@@ -1,0 +1,9 @@
+*
+!alacritty/*
+!espanso/**
+!i3/**
+!picom/**
+!polybar/**
+!ranger/**
+!README.md
+!.gitignore
