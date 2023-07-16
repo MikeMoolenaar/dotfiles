@@ -1,5 +1,7 @@
 *
-!alacritty/*
+!*/
+alacritty/themes/
+!alacritty/alacritty.yml
 !espanso/**
 !i3/**
 !picom/**
