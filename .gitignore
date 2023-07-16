@@ -10,5 +10,6 @@ alacritty/themes/
 !vim/**
 !zsh/**
 !feh/**
+!install.sh
 !README.md
 !.gitignore
