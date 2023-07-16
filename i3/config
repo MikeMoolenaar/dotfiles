@@ -226,6 +226,6 @@ exec_always --no-startup-id xrandr --output HDMI-1 --left-of DP-2
 exec_always --no-startup-id xrandr --output DP-0 --right-of DP-2
 
 exec_always picom -b --config ~/.config/picom/picom.conf
-exec_always sh ~/.fehbg
+exec_always sh ~/.config/feh/.fehbg
 exec_always --no-startup-id sh ~/.config/polybar/launch.sh
 
