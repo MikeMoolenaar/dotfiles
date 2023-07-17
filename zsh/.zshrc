@@ -9,6 +9,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export EDITOR=/bin/vim
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -18,6 +19,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
 git
+aliases
+dotnet
 zsh-autosuggestions
 zsh-syntax-highlighting
 docker
