@@ -63,7 +63,7 @@ mkcdir () {
 }
 
 bluetooth() {
-    sudo systemctl start bluetooth
+#    sudo systemctl start bluetooth
     blueman-manager > /dev/null 2>&1 &
 }
 
@@ -74,3 +74,4 @@ bluetooth() {
 
 # Github copilot CLI
 # eval "$(github-copilot-cli alias -- "$0")"
+source /usr/share/nvm/init-nvm.sh

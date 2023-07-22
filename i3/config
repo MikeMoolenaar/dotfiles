@@ -41,7 +41,7 @@ client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcol
 
 # Gaps
 # Configure 5px of space between windows and to the screen edges.
-gaps inner 5px
+gaps inner 0px
 
 # Configure an additional 5px of extra space to the screen edges,
 # for a total gap of 10px to the screen edges, and 5px between windows.
