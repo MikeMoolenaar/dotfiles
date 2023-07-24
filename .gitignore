@@ -11,6 +11,7 @@ alacritty/themes/
 !zsh/**
 !feh/**
 !dunst/**
+!mcomix/**
 !install.sh
 !README.md
 !.gitignore
