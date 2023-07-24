@@ -71,6 +71,12 @@ gitopen() {
   git remote -v | head -n 1 | awk -F " " '{print $2}' | sed 's/\.git//g' | sed 's/git\@github\.com:/https:\/\/github\.com\//g' | xargs firefox --new-tab
 }
 
+# Show installed packages excluding the default ones
+# Source: https://unix.stackexchange.com/a/409903
+installed() {
+  comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base-devel | sort | uniq)
+}
+
 
 
 # Load Angular CLI autocompletion.
