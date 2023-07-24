@@ -72,9 +72,11 @@ gitopen() {
 }
 
 # Show installed packages excluding the default ones
-# Source: https://unix.stackexchange.com/a/409903
 installed() {
-  comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base-devel | sort | uniq)
+  echo "<== Pacman ==>"
+  pacman -Qqett | sort
+  echo "\n<== Flatpak ==>"
+  flatpak list
 }
 
 

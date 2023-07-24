@@ -14,5 +14,5 @@ alacritty/themes/
 !mcomix/**
 !install.sh
 !README.md
-!dependencies.txt
+!dependencies.sh
 !.gitignore
