@@ -1,0 +1,5 @@
+# All dependencies can be installed from the official repo or AUR, use yay or paru
+highlight # Highlight text previews in ranger
+copyq
+flatpak
+# TODO: WIP, list is not complete
