@@ -256,5 +256,6 @@ exec_always --no-startup-id sleep 2 && xrandr --output DP-0 --right-of DP-2
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 exec_always --no-startup-id sh ~/.config/feh/.fehbg
 exec_always --no-startup-id sh ~/.config/polybar/launch.sh
-exec_always --no-startup-id copyq
+exec --no-startup-id copyq
+exec --no-startup-id nvidia-settings -l # Make sure OpenGL "Allow flipping" is off
 
