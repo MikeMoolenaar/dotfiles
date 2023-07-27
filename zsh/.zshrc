@@ -50,12 +50,12 @@ alias python="python3"
 #vman() { vim <(man $1); } # Doesn't work anymore lol, just empties screen after a few seconds
 cheat() { curl cheat.sh/$1; }
 #alias upd="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && flatpak update -y"
-alias upd="paru && flatpak update -y"
+alias upd="paru"
+alias yay="paru"
 alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo $HOME/.local/bin/lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"
-alias yay="paru"
-alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
+alias mount_storage="sudo mount -t ntfs /dev/sda2 /mnt/storage"
 
 mkcdir () {
     mkdir -p -- "$1" &&
@@ -86,4 +86,5 @@ installed() {
 
 # Github copilot CLI
 # eval "$(github-copilot-cli alias -- "$0")"
+#
 source /usr/share/nvm/init-nvm.sh

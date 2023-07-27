@@ -99,7 +99,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+q kill
 
 # Screenshot tool
-bindsym Print exec flatpak run org.flameshot.Flameshot gui
+bindsym Print exec flameshot gui
 
 # Clipboard manager
 bindsym $mod+Shift+w exec copyq toggle

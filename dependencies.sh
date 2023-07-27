@@ -9,8 +9,7 @@ dunst
 espanso-git
 feh
 firefox
-flatpak
-grub
+# grub
 gst-plugin-pipewire
 highlight
 htop
@@ -47,7 +46,7 @@ ueberzug
 vim-plug
 vlc
 # wget
-wireguard-tools
+wireguard-tools # Required for VPN's
 # wireless_tools
 # wpa_supplicant
 # xorg-xinit
@@ -56,7 +55,3 @@ wireguard-tools
 # zram-generator
 zsh
 
-# Flatpaks
-discord
-flameshot
-# remmina

@@ -12,7 +12,7 @@ alacritty/themes/
 !feh/**
 !dunst/**
 !mcomix/**
-!install.sh
-!README.md
-!dependencies.sh
-!.gitignore
+!/install.sh
+!/README.md
+!/dependencies.sh
+!/.gitignore
