@@ -41,7 +41,7 @@ alias calc="noglob calcc"
 
 unsetopt HIST_VERIFY # Disable preview when typing !!, just execute the command
 setopt histignorespace # Commands starting with space will not be saved to history
-
+PROMPT_EOL_MARK='' # Remove percentage sign for partial lines (mainly happens with curl)
 
 alias c="clear"
 #alias ip="ifconfig | grep broadcast | awk '{print \$2}'"
