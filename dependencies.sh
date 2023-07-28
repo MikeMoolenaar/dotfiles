@@ -56,3 +56,4 @@ wireguard-tools # Required for VPN's
 zsh
 bat
 gitui
+man-db

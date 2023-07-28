@@ -12,6 +12,7 @@ alacritty/themes/
 !feh/**
 !dunst/**
 !mcomix/**
+!rofi/**
 !/install.sh
 !/README.md
 !/dependencies.sh
