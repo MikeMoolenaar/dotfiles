@@ -54,4 +54,5 @@ wireguard-tools # Required for VPN's
 # xterm
 # zram-generator
 zsh
-
+bat
+gitui
