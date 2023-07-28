@@ -254,9 +254,6 @@ user_pref("cookiebanners.service.mode.privateBrowsing", 2);
 ****************************************************************************/
 // Enter your personal prefs below this line:
 
-// allow Safe Browsing to scan your downloads to identify suspicious files (remote)
-user_pref("browser.safebrowsing.downloads.remote.enabled", true);
-
 // PREF: restore Firefox accounts
 user_pref("identity.fxaccounts.enabled", true);
 // PREF: Push API seems to be needed for Sync
