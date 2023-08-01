@@ -205,16 +205,17 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # Exit menu (source: https://unix.stackexchange.com/a/549462)
-mode "exit: [l]ock, l[o]gout, [r]eboot, [s]hutdown" {
+mode "exit: [l]ock, l[o]gout, [r]eboot, [s]hutdown, s[u]spend" {
   bindsym l exec i3lock
   bindsym o exec i3-msg exit
   bindsym r exec systemctl reboot
   bindsym s exec shutdown now
+  bindsym u exec systemctl suspend
   bindsym Escape mode "default"
   bindsym Return mode "default"
 
 }
-bindsym $mod+x mode "exit: [l]ock, l[o]gout, [r]eboot, [s]hutdown"
+bindsym $mod+x mode "exit: [l]ock, l[o]gout, [r]eboot, [s]hutdown, s[u]spend"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -250,9 +251,9 @@ bar {
 }
 
 
-exec_always --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 165 --preferred
-exec_always --no-startup-id sleep 1 && xrandr --output HDMI-1 --left-of DP-2
-exec_always --no-startup-id sleep 2 && xrandr --output DP-0 --right-of DP-2
+exec_always --no-startup-id xrandr --output DP-0 --mode 2560x1440 --rate 165 --preferred
+exec_always --no-startup-id sleep 1 && xrandr --output HDMI-0 --left-of DP-0
+exec_always --no-startup-id sleep 2 && xrandr --output DP-2 --right-of DP-0
 
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 exec_always --no-startup-id sh ~/.config/feh/.fehbg
