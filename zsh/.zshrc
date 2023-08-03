@@ -24,6 +24,7 @@ dotnet
 zsh-autosuggestions
 zsh-syntax-highlighting
 docker
+ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
