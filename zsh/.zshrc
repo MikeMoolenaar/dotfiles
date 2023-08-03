@@ -76,8 +76,6 @@ gitopen() {
 installed() {
   echo "<== Pacman ==>"
   pacman -Qqett | sort
-  echo "\n<== Flatpak ==>"
-  flatpak list
 }
 
 

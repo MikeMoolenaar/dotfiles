@@ -57,3 +57,5 @@ zsh
 bat
 gitui
 man-db
+python
+python-pandas
