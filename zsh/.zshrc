@@ -17,6 +17,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+zstyle ":omz:plugins:ssh-agent" quiet yes
 plugins=(
 git
 aliases
@@ -57,6 +58,7 @@ alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo $HOME/.local/bin/lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"
 alias mount_storage="sudo mount -t ntfs /dev/sda2 /mnt/storage"
+alias bl="bluetoothctl connect A0:D0:5B:A5:4E:74"
 
 mkcdir () {
     mkdir -p -- "$1" &&

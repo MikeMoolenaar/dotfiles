@@ -1,6 +1,7 @@
 # All dependencies can be installed from the official repo or AUR, use yay or paru
 alacritty
 blueman
+bluez-utils
 btop
 # cloudflared
 copyq
@@ -59,3 +60,5 @@ gitui
 man-db
 python
 python-pandas
+remmina
+freerdp
