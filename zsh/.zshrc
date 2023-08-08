@@ -55,9 +55,9 @@ cheat() { curl cheat.sh/$1; }
 alias upd="paru"
 alias yay="paru"
 alias jpwine="LANG='ja_JP.UTF8' wine"
-alias lzd="sudo $HOME/.local/bin/lazydocker"
+alias lzd="sudo lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"
-alias mount_storage="sudo mount -t ntfs /dev/sda2 /mnt/storage"
+alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
 alias bl="bluetoothctl connect A0:D0:5B:A5:4E:74"
 
 mkcdir () {

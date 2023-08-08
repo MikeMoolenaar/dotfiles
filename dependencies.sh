@@ -60,5 +60,7 @@ gitui
 man-db
 python
 python-pandas
-remmina
-freerdp
+# remmina
+# freerdp
+docker
+lazydocker
