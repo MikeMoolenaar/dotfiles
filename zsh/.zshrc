@@ -80,6 +80,19 @@ installed() {
   pacman -Qqett | sort
 }
 
+tv1() {
+  # Enable flipping to prevent tearing
+  nvidia-settings -l -a "AllowFlipping=1"
+  xrandr --output HDMI-1 --mode 3840x2160 --rate 60 --above DP-2
+  echo "TV connected"
+}
+
+tv0() {
+  nvidia-settings -l -a "AllowFlipping=0"
+  xrandr --output HDMI-1 --off
+  echo "TV disconnected"
+}
+
 
 
 # Load Angular CLI autocompletion.

@@ -63,4 +63,5 @@ python-pandas
 # remmina
 # freerdp
 docker
+docker-compose
 lazydocker
