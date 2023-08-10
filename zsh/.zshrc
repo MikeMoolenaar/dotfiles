@@ -59,6 +59,7 @@ alias lzd="sudo lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"
 alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
 alias bl="bluetoothctl connect A0:D0:5B:A5:4E:74"
+alias docker="sudo docker"
 
 mkcdir () {
     mkdir -p -- "$1" &&
@@ -100,5 +101,6 @@ tv0() {
 
 # Github copilot CLI
 # eval "$(github-copilot-cli alias -- "$0")"
-#
-source /usr/share/nvm/init-nvm.sh
+
+# Do not source on init because of init slowdowns 
+alias init-nvm="source /usr/share/nvm/init-nvm.sh"
