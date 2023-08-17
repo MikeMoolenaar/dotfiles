@@ -58,8 +58,12 @@ alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"
 alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
-alias bl="bluetoothctl connect A0:D0:5B:A5:4E:74"
+alias blb="bluetoothctl connect A0:D0:5B:A5:4E:74" # Soundbar
+alias blh="bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones
+alias bld="bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
 alias docker="sudo docker"
+alias sit="bld && idasen-controller --move-to sit"
+alias stand="bld && idasen-controller --move-to stand"
 
 mkcdir () {
     mkdir -p -- "$1" &&
@@ -104,3 +108,6 @@ tv0() {
 
 # Do not source on init because of init slowdowns 
 alias init-nvm="source /usr/share/nvm/init-nvm.sh"
+
+# Created by `pipx` on 2023-08-17 16:59:46
+export PATH="$PATH:/home/mike/.local/bin"
