@@ -64,6 +64,7 @@ alias bld="bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
 alias docker="sudo docker"
 alias sit="bld && idasen-controller --move-to sit"
 alias stand="bld && idasen-controller --move-to stand"
+alias curltime="curl -s -w '\n\nTotal: %{time_total}s\n' "
 
 mkcdir () {
     mkdir -p -- "$1" &&

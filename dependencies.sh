@@ -6,6 +6,7 @@ btop
 # cloudflared
 copyq
 dotnet-sdk
+# dotnet-sdk-preview-bin
 dunst
 espanso-git
 feh
