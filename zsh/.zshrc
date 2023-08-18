@@ -64,7 +64,7 @@ alias bld="bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
 alias docker="sudo docker"
 alias sit="bld && idasen-controller --move-to sit"
 alias stand="bld && idasen-controller --move-to stand"
-alias curltime="curl -s -w '\n\nTotal: %{time_total}s\n' "
+alias curltime="curl -s -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
 
 mkcdir () {
     mkdir -p -- "$1" &&
@@ -112,3 +112,5 @@ alias init-nvm="source /usr/share/nvm/init-nvm.sh"
 
 # Created by `pipx` on 2023-08-17 16:59:46
 export PATH="$PATH:/home/mike/.local/bin"
+
+source /home/mike/.config/broot/launcher/bash/br

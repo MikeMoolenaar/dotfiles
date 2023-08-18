@@ -102,6 +102,9 @@ bindsym Print exec flameshot gui
 # Clipboard manager
 bindsym $mod+Shift+w exec copyq show
 
+# Search script
+bindsym Ctrl+Shift+s exec ~/.config/scripts/search.sh
+
 # start rofi 
 bindsym $mod+d exec --no-startup-id rofi -show drun 
 bindsym $mod+c exec --no-startup-id LC_MONETARY=nl_NL.UTF-8 rofi -show calc -modi calc -no-show-match -no-sort

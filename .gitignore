@@ -15,6 +15,7 @@ alacritty/themes/
 !rofi/**
 !firefox/**
 !idasen-controller/**
+!scripts/**
 !/install.sh
 !/README.md
 !/dependencies.sh
