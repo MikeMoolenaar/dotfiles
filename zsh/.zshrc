@@ -65,6 +65,7 @@ alias docker="sudo docker"
 alias sit="bld && idasen-controller --move-to sit"
 alias stand="bld && idasen-controller --move-to stand"
 alias curltime="curl -s -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
+alias windows="sudo grub-reboot 'Windows 10 (on /dev/sdb1)'i && systemctl reboot"
 
 mkcdir () {
     mkdir -p -- "$1" &&
