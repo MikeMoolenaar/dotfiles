@@ -99,18 +99,11 @@ tv0() {
   echo "TV disconnected"
 }
 
-
-
-# Load Angular CLI autocompletion.
-# source <(ng completion script)
-
 # Github copilot CLI
 # eval "$(github-copilot-cli alias -- "$0")"
 
 # Do not source on init because of init slowdowns 
 alias init-nvm="source /usr/share/nvm/init-nvm.sh"
 
-# Created by `pipx` on 2023-08-17 16:59:46
+# Pipx places binaries in this folder
 export PATH="$PATH:/home/mike/.local/bin"
-
-source /home/mike/.config/broot/launcher/bash/br
