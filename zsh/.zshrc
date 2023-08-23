@@ -64,7 +64,7 @@ alias bld="bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
 alias docker="sudo docker"
 alias sit="bld && idasen-controller --move-to sit"
 alias stand="bld && idasen-controller --move-to stand"
-alias curltime="curl -s -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
+alias curltime="curl -Ls --output /dev/null -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
 alias windows="sudo grub-reboot 'Windows 10 (on /dev/sdb1)'i && systemctl reboot"
 
 mkcdir () {

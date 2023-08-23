@@ -16,6 +16,7 @@ alacritty/themes/
 !firefox/**
 !idasen-controller/**
 !scripts/**
+scripts/Capture2Text
 !/install.sh
 !/README.md
 !/dependencies.sh

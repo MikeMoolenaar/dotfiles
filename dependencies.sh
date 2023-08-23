@@ -6,7 +6,7 @@ btop
 # cloudflared
 copyq
 dotnet-sdk
-# dotnet-sdk-preview-bin
+# dotnet-sdk-preview-bin # Latest dotnet beta sdk
 dunst
 espanso-git
 feh
@@ -33,7 +33,6 @@ nvidia
 nvidia-settings
 nvm
 obsidian
-# os-prober
 paru
 picom
 # pipewire-alsa
@@ -42,12 +41,10 @@ playerctl
 polybar
 # qbittorrent
 ranger-git
-# smartmontools
 spotify
 ueberzug
 vim-plug
 vlc
-# wget
 wireguard-tools # Required for VPN's
 # wireless_tools
 # wpa_supplicant
@@ -67,3 +64,6 @@ python-pipx # Handy for CLI's written in python
 docker
 docker-compose
 lazydocker
+whois
+xsel
+# libreoffice-fresh # Mainlt for openoffice calc
