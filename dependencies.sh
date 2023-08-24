@@ -53,6 +53,7 @@ wireguard-tools # Required for VPN's
 # xterm
 # zram-generator
 zsh
+
 bat
 gitui
 man-db
@@ -66,4 +67,4 @@ docker-compose
 lazydocker
 whois
 xsel
-# libreoffice-fresh # Mainlt for openoffice calc
+# libreoffice-fresh # Mainly for openoffice calc

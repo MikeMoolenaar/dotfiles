@@ -17,6 +17,7 @@ alacritty/themes/
 !idasen-controller/**
 !scripts/**
 scripts/Capture2Text
+scripts/*.png
 !/install.sh
 !/README.md
 !/dependencies.sh
