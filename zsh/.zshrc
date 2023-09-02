@@ -73,6 +73,6 @@ tv0() {
 alias init-nvm="source /usr/share/nvm/init-nvm.sh"
 
 # Pipx places binaries in this folder
-export PATH="$PATH:/home/mike/.local/boin"
+export PATH="$PATH:/home/mike/.local/bin"
 
 eval "$(starship init zsh)"
