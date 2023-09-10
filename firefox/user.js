@@ -264,6 +264,9 @@ user_pref("browser.newtabpage.activity-stream.feeds.topsites", true);
 
 // Don't open booksmarks in new tab (I can just use ctrl+click)
 user_pref("browser.tabs.loadBookmarksInTabs", false);
+
+// Force kanji to show in the japanese style
+user_pref("font.cjk_pref_fallback_order", "ja,zh-cn,zh-hk,zh-tw,ko");
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/

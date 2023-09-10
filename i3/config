@@ -105,6 +105,7 @@ bindsym $mod+Shift+w exec copyq show
 
 # Search script
 bindsym Ctrl+Shift+s exec ~/.config/scripts/search.sh
+bindsym Ctrl+Shift+e exec ~/.config/scripts/ocr-jp.sh -t
 
 # start rofi 
 bindsym $mod+d exec --no-startup-id rofi -show drun 

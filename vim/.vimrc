@@ -23,6 +23,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
+inoremap jk <ESC>
 let NERDTreeShowHidden=1 "Toggle with {shift + i}"
 
 call plug#end()
