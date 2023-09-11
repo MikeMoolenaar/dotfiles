@@ -26,6 +26,7 @@ alias s="source ~/.zshrc"
 alias python="python3"
 cheat() { curl cheat.sh/$1; }
 alias yay="paru"
+alias parus="paru -S"
 alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"

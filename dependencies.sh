@@ -8,6 +8,7 @@ copyq
 dotnet-sdk
 # dotnet-sdk-preview-bin # Latest dotnet beta sdk
 dunst
+jq
 espanso-git
 feh
 firefox
@@ -25,7 +26,6 @@ jetbrains-toolbox
 # lightdm-gtk-greeter
 # linux-firmware
 # mcomix
-# nano
 neofetch
 noto-fonts-cjk
 noto-fonts-emoji
@@ -44,7 +44,7 @@ ranger-git
 spotify
 ueberzug
 vim-plug
-vlc
+mpv
 wireguard-tools # Required for VPN's
 # wireless_tools
 # wpa_supplicant
@@ -53,7 +53,6 @@ wireguard-tools # Required for VPN's
 # xterm
 # zram-generator
 zsh
-
 bat
 gitui
 man-db
@@ -68,3 +67,7 @@ lazydocker
 whois
 xsel
 # libreoffice-fresh # Mainly for openoffice calc
+# VM related stuff
+# virt-manager
+# qemu
+# dnsmasq
