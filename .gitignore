@@ -15,10 +15,14 @@ alacritty/themes/
 !rofi/**
 !firefox/**
 !idasen-controller/**
+!copyq/copyq.conf
+!flameshot/flameshot.ini
+!mpv/**
 !scripts/**
 scripts/Capture2Text
 scripts/*.png
 !/install.sh
 !/README.md
 !/dependencies.sh
+!/starship.toml
 !/.gitignore
