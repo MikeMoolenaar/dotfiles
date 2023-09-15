@@ -1,7 +1,18 @@
 #!/bin/bash
 
 sudo pacman -Syu
-sudo pacman -Sy --needed --noconfirm base base-devel paru git
+
+# Install base-devel and yaru
+if ! builtin type -p 'paru' >/dev/null 2>&1; then
+  CWD=`pwd`
+  tmpdir="$(command mktemp -d)"
+  command cd "${tmpdir}" || return 1
+  sudo pacman -Sy --needed --noconfirm base base-devel git
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
+  makepkg -si
+  cd $CWD
+fi
 
 rm -rf ~/.config
 git clone https://github.com/MikeMoolenaar/dotfiles.git ~/.config
