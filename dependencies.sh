@@ -30,11 +30,10 @@ neofetch
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
-nvidia
-nvidia-settings
+# nvidia
+# nvidia-settings
 nvm
 obsidian
-paru
 picom
 playerctl
 polybar
@@ -51,7 +50,7 @@ zsh
 bat
 gitui
 man-db
-python
+# python # Installed by default
 python-pandas
 python-pipx # Handy for CLI's written in python
 # remmina
