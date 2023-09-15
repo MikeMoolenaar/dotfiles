@@ -1,3 +1,7 @@
 #!/bin/sh
-sleep 2
-feh --no-fehbg --bg-center '/home/mike/Backgrounds/Akane.png' 
+file="/home/mike/Backgrounds/background.png"
+if [ -f "$file" ]; then
+
+	sleep 2
+	feh --no-fehbg --bg-center "$file"
+fi

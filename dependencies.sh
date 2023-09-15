@@ -1,8 +1,10 @@
-# All dependencies can be installed from the official repo or AUR, use yay or paru
+#=> All dependencies need to be in the base Arch repo or AUR
 alacritty
 blueman
-bluez-utils
+bluez-utils # For bluetoothctl
 btop
+rofi
+rofi-calc
 # cloudflared
 copyq
 dotnet-sdk
@@ -12,21 +14,20 @@ jq
 espanso-git
 feh
 firefox
-# grub
 gst-plugin-pipewire
 highlight
 htop
+vim-plug
 # i3blocks
 # i3lock
 # i3status
 # i3-wm
 imagemagick
-# iwd
 jetbrains-toolbox
 # lightdm-gtk-greeter
-# linux-firmware
 # mcomix
 neofetch
+noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 nvidia
@@ -35,23 +36,17 @@ nvm
 obsidian
 paru
 picom
-# pipewire-alsa
-# pipewire-pulse
 playerctl
 polybar
 # qbittorrent
-ranger-git
+ranger
+ueberzug # Enable image preview in ranger
 spotify
-ueberzug
-vim-plug
 mpv
-wireguard-tools # Required for VPN's
+# wireguard-tools # Required for VPN's
 # wireless_tools
 # wpa_supplicant
-# xorg-xinit
-# xorg-xrandr
-# xterm
-# zram-generator
+starship
 zsh
 bat
 gitui
@@ -66,8 +61,10 @@ docker-compose
 lazydocker
 whois
 xsel
-# libreoffice-fresh # Mainly for openoffice calc
-# VM related stuff
+# wine-stable 
+# wine-mono
+libreoffice-fresh # Mainly for openoffice calc
+#=> VM related stuff
 # virt-manager
 # qemu
 # dnsmasq
