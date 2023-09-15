@@ -49,6 +49,4 @@ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
 git config --global init.defaultBranch main
 git config --global pull.rebase false
 
-
 echo "All done! Don't forget to change the xrandr lines in .config/i3/config and then reboot."
-
