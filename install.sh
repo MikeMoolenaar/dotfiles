@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# TODO still broken
+exit 1
 sudo pacman -Syu
 
 # Install base-devel and paru
@@ -48,7 +49,7 @@ chsh -s /bin/zsh
 vim -c PlugInstall
 
 # Install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
@@ -60,4 +61,4 @@ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
 git config --global init.defaultBranch main
 git config --global pull.rebase false
 
-echo "All done! Don't forget to change the xrandr lines in .config/i3/config and then reboot."
+echo -e "\n\nAll done! Don't forget to change the xrandr lines in .config/i3/config and the polybar config for the default monitor. You can then reboot."
