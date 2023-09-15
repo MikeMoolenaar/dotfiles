@@ -2,7 +2,7 @@
 
 sudo pacman -Syu
 
-# Install base-devel and yaru
+# Install base-devel and paru
 if ! builtin type -p 'paru' >/dev/null 2>&1; then
   CWD=`pwd`
   tmpdir="$(command mktemp -d)"
