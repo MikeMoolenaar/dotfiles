@@ -62,4 +62,4 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/
 git config --global init.defaultBranch main
 git config --global pull.rebase false
 
-echo -e "\n\nAll done! Don't forget to change the xrandr lines in .config/i3/config and the polybar config for the default monitor. You can then reboot."
+echo -e "\n\nAll done!Don't forget to update the xrandr lines in '.config/i3/config' and Polybar settings for the main monitor, then reboot."
