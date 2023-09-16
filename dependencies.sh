@@ -18,6 +18,7 @@ gst-plugin-pipewire
 highlight
 htop
 vim-plug
+unzip
 # i3blocks
 # i3lock
 # i3status
