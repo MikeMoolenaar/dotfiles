@@ -23,6 +23,7 @@ vim-plug
 # i3status
 # i3-wm
 xss-lock
+xorg-xrandr
 imagemagick
 jetbrains-toolbox
 # lightdm-gtk-greeter
