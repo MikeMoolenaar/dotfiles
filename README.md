@@ -1,13 +1,13 @@
 # dotfiles
-My personal Arch Linux dot files, includes an install script.
+My personal Arch Linux dotfiles with an install script.
 
 ## Installation
 
-### 1 - Install ArchLinux
-Install archlinux using `archinstall`,  use the desktop profile with i3-wm.
+### 1 - Install Arch
+Install using `archinstall` and choose the desktop profile with i3-wm.
 
 ### 2 - Execute the install script
-(optional) update pacman.conf:
+(optional) update pacman config with `sudo vim /etc/pacman.conf`:
 - Uncomment `Color`
 - Uncomment `ParallelDownloads = 5`
 - Add `ILoveCandy`
