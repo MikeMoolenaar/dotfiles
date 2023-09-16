@@ -1,8 +1,12 @@
 # dotfiles
-Still in progress..
+My personal Arch Linux dot files, includes an install script.
 
+## Installation
 
-## Install
+### 1 - Install ArchLinux
+Install archlinux using `archinstall`,  use the desktop profile with i3-wm.
+
+### 2 - Execute the install script
 (optional) update pacman.conf:
 - Uncomment `Color`
 - Uncomment `ParallelDownloads = 5`
@@ -15,9 +19,9 @@ chmod +x install.sh
 bash install.sh
 ```
 
-## Post-install steps
+### Post-install steps
 - Install the user.js settings file for Firefox (Firefox has to be started at least once before this works):
 ```sh
 ln -s ~/.config/firefox/user.js ~/.mozilla/firefox/*default-release
 ```
-- [Setup Github authentication](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key), the connection can be tested using `ssh -T git@github.com
+- [Setup Github authentication](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key), the connection can be tested using `ssh -T git@github.com`
