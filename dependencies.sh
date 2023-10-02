@@ -17,6 +17,7 @@ firefox
 gst-plugin-pipewire
 highlight
 htop
+gvim # Contains clipboard modules
 vim-plug
 unzip
 # i3blocks

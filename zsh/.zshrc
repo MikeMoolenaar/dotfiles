@@ -23,10 +23,12 @@ PROMPT_EOL_MARK='' # Remove percentage sign for partial lines (mainly happens wi
 # Aliases
 alias c="clear"
 alias s="source ~/.zshrc"
+alias r="ranger"
 alias python="python3"
 cheat() { curl cheat.sh/$1; }
 alias yay="paru"
 alias parus="paru -S"
+alias parur="paru -R"
 alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"
@@ -40,7 +42,8 @@ alias stand="bld && idasen-controller --move-to stand"
 alias curltime="curl -Ls --output /dev/null -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
 alias windows="sudo grub-reboot 'Windows 10 (on /dev/sdb1)' && systemctl reboot"
 
-mkcdir () {
+
+mkcdir() {
     mkdir -p -- "$1" &&
        cd -P -- "$1"
 }

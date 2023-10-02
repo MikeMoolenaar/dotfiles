@@ -263,9 +263,9 @@ font:
     #  foreground: '#e9ff5e'
     #  background: '#1d1f21'
 
-  # Line indicator
-  #
-  # Color used for the indicator displaying the position in history during
+  # Line mode: Search, indicator
+  #      mode: Search, 
+  # Colormode: Search,  used for the indicator displaying the position in history during
   # search and vi mode.
   #
   # By default, these will use the opposing primary color.
@@ -768,7 +768,8 @@ font:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
+ - { key: N,   mods: Control|Shift, action: SpawnNewInstance }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
