@@ -4,7 +4,8 @@ My personal Arch Linux dotfiles with an install script.
 ## Installation
 
 ### 1 - Install Arch
-Install using `archinstall` and choose the desktop profile with i3-wm.
+Install using `archinstall` and choose the desktop profile with i3-wm.  
+Also make sure you don't create a seperate partition for root (this may lead to storage problems with many pacman packages and docker images).
 
 ### 2 - Execute the install script
 (optional) update pacman config with `sudo vim /etc/pacman.conf`:
@@ -12,7 +13,7 @@ Install using `archinstall` and choose the desktop profile with i3-wm.
 - Uncomment `ParallelDownloads = 5`
 - Add `ILoveCandy`
 
-Get and run the install script
+Get and run the install script (WARNING: this will delete the `.config` folder!)
 ```sh
 wget https://raw.githubusercontent.com/MikeMoolenaar/dotfiles/main/install.sh
 chmod +x install.sh
