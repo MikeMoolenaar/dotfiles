@@ -30,7 +30,6 @@ Plug 'DougBeney/pickachu'
 call plug#end()
 
 nnoremap <C-n> :NERDTreeFocus<CR>
-"nnoremap <C-n> :NERDTree<CR>"
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 nnoremap <C-d> <C-d>zz
@@ -76,7 +75,7 @@ function! ShowDocumentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor
-"autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
