@@ -108,8 +108,9 @@ bindsym Ctrl+Shift+s exec ~/.config/scripts/search.sh
 bindsym Ctrl+Shift+e exec ~/.config/scripts/ocr-jp.sh -t
 
 # start rofi 
-bindsym $mod+d exec --no-startup-id rofi -show drun 
+bindsym $mod+d exec --no-startup-id "rofi -show combi -combi-modes 'window,drun' -modes combi"
 bindsym $mod+c exec --no-startup-id LC_MONETARY=nl_NL.UTF-8 rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $mod+g exec ~/.config/scripts/rofi-terminal.sh
 
 # change focus
 bindsym $mod+h focus left
