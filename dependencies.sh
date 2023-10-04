@@ -7,8 +7,10 @@ rofi
 rofi-calc
 # cloudflared
 copyq
+flameshot
 dotnet-sdk
 # dotnet-sdk-preview-bin # Latest dotnet beta sdk
+os-prober
 dunst
 jq
 espanso-git
@@ -21,15 +23,11 @@ gvim # Contains clipboard modules
 vim-plug
 nvim
 unzip
-# i3blocks
-# i3lock
-# i3status
-# i3-wm
+# discord
 xss-lock
 xorg-xrandr
 imagemagick
 jetbrains-toolbox
-# lightdm-gtk-greeter
 # mcomix
 neofetch
 noto-fonts
@@ -73,6 +71,7 @@ libreoffice-fresh # Mainly for openoffice calc
 # virt-manager
 # qemu
 # dnsmasq
+#=?
 # anki
 # mkvalidator
 # yazi-git
