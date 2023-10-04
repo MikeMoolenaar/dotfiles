@@ -38,6 +38,7 @@ sudo systemctl enable bluetooth
 if [[ $(which docker) ]]; then
     sudo systemctl enable docker.service
 fi
+espanso service register
 
 # Setup zsh and vim
 ln -s ~/.config/zsh/.zshrc ~/.zshrc
