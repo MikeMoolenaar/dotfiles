@@ -8,6 +8,7 @@ alacritty/themes/
 !polybar/**
 !ranger/**
 !vim/**
+!nvim/**
 !zsh/**
 !feh/**
 !dunst/**

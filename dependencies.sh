@@ -19,6 +19,7 @@ highlight
 htop
 gvim # Contains clipboard modules
 vim-plug
+nvim
 unzip
 # i3blocks
 # i3lock
@@ -64,6 +65,7 @@ docker-compose
 lazydocker
 whois
 xsel
+# imhex-bin # hex editor
 # wine-stable 
 # wine-mono
 libreoffice-fresh # Mainly for openoffice calc
@@ -71,3 +73,8 @@ libreoffice-fresh # Mainly for openoffice calc
 # virt-manager
 # qemu
 # dnsmasq
+# Anki
+# mkvalidator
+# wine-stable
+# wine-mono
+yazi-git
