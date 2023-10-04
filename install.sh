@@ -19,7 +19,7 @@ git clone https://github.com/MikeMoolenaar/dotfiles.git ~/.config
 # Setup dependencies
 vim ~/.config/dependencies.sh
 
-mapfile -t packages < <(grep -v "#" ~/.config/dependencies.sh)
+mapfile -t packages < <(grep -v ^# ~/.config/dependencies.sh)
 
 echo "Will install ${#packages[@]} dependencies:"
 for line in "${packages[@]}"; do
