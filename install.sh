@@ -56,8 +56,15 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.
 mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
-# Install font
+# Install JetBrains mono font
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
+
+# Install FiraCode font to get glyphs used in starship
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
+unzip FiraCode.zip -d firacode-temp
+mv firacode-temp/FiraCodeNerdFont-Medium.ttf ~/.local/share/fonts/
+rm FiraCode.zip
+rm -r firacode-temp
 
 # Git stuff
 git config --global init.defaultBranch main
