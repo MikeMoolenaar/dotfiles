@@ -73,8 +73,6 @@ libreoffice-fresh # Mainly for openoffice calc
 # virt-manager
 # qemu
 # dnsmasq
-# Anki
+# anki
 # mkvalidator
-# wine-stable
-# wine-mono
-yazi-git
+# yazi-git
