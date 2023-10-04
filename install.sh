@@ -14,12 +14,12 @@ if ! builtin type -p 'paru' >/dev/null 2>&1; then
 fi
 
 rm -rf ~/.config
-git clone https://github.com/MikeMoolenaar/dotfiles.git ~/.config
+git clone git@github.com:MikeMoolenaar/dotfiles.git ~/.config
 
 # Setup dependencies
 vim ~/.config/dependencies.sh
 
-mapfile -t packages < <(grep -v ^# ~/.config/dependencies.sh)
+mapfile -t packages < <(grep -v ^\# ~/.config/dependencies.sh)
 
 echo "Will install ${#packages[@]} dependencies:"
 for line in "${packages[@]}"; do
@@ -62,5 +62,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/
 # Git stuff
 git config --global init.defaultBranch main
 git config --global pull.rebase false
+git config --global user.email "mmoolenaar9@gmail.com"
+git config --global user.name "MikeMoolenaar"
 
 echo -e "\n\nAll done!Don't forget to update the xrandr lines in '.config/i3/config' and Polybar settings for the main monitor, then reboot."
