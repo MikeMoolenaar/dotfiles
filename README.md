@@ -5,7 +5,7 @@ My personal Arch Linux dotfiles with an install script.
 
 ### 1 - Install Arch
 Install using `archinstall` and choose the desktop profile with i3-wm.  
-Also make sure you don't create a seperate partition for root (this may lead to storage problems with many pacman packages and docker images).
+Also make sure you don't create a seperate partition for /home (this may lead to storage problems with many pacman packages and docker images).
 
 ### 2 - Execute the install script
 (optional) update pacman config with `sudo vim /etc/pacman.conf`:
