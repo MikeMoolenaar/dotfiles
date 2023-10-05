@@ -24,6 +24,7 @@ PROMPT_EOL_MARK='' # Remove percentage sign for partial lines (mainly happens wi
 alias c="clear"
 alias s="source ~/.zshrc"
 alias r="ranger"
+alias v="vim"
 alias python="python3"
 cheat() { curl cheat.sh/$1; }
 alias yay="paru"
