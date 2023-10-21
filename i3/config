@@ -63,7 +63,7 @@ default_border pixel 3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 000000
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -204,14 +204,14 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# Exit menu (inspired from: https://unix.stackexchange.com/a/549462)
+# Exit menu (inspired by: https://unix.stackexchange.com/a/549462)
 set $system_menu_mode "exit: [l]ock, l[o]gout, [r]eboot, [s]hutdown, s[u]spend"
 mode $system_menu_mode {
-  bindsym l exec i3lock -c 000000; mode "default"
+  bindsym l exec i3lock;  mode "default"
   bindsym o exec i3-msg exit
   bindsym r exec systemctl reboot
   bindsym s exec systemctl poweroff
-  bindsym u exec i3lock -c 000000 && systemctl suspend; mode "default"
+  bindsym u exec systemctl suspend; mode "default"
   bindsym Escape mode "default"
   bindsym Return mode "default"
 
@@ -248,9 +248,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # This bar is needed, because otherwise copyq will not close after selecting an item
-bar {
-  mode hide
-}
+#bar {
+#  mode hide
+#}
 
 # Display stuff
 exec_always --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 165 --preferred
