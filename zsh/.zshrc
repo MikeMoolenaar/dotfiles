@@ -34,9 +34,9 @@ alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo lazydocker"
 alias esp="EDITOR=/usr/bin/vim espanso edit"
 alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
-alias blb="bluetoothctl connect A0:D0:5B:A5:4E:74" # Soundbar
-alias blh="bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones
-alias bld="bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
+alias blb="bluetoothctl disconnect; bluetoothctl connect A0:D0:5B:A5:4E:74" # Soundbar
+alias blh="bluetoothctl disconnect; bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones
+alias bld="bluetoothctl disconnect; bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
 alias docker="sudo docker"
 alias sit="bld && idasen-controller --move-to sit"
 alias stand="bld && idasen-controller --move-to stand"
