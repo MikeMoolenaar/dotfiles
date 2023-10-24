@@ -66,12 +66,16 @@ xsel
 # imhex-bin # hex editor
 # wine-stable 
 # wine-mono
-libreoffice-fresh # Mainly for openoffice calc
+#=> Libreoffice
+libreoffice-fresh
+hunspell 
+hunspell-en_gb
+#=>
 #=> VM related stuff
 # virt-manager
 # qemu
 # dnsmasq
-#=?
+#=>
 # anki
 # mkvalidator
 # yazi-git
