@@ -4,7 +4,7 @@ My personal Arch Linux dotfiles with an install script.
 ## Installation
 
 ### 1 - Install Arch
-Install using `archinstall` and choose the desktop profile with i3-wm.  
+Install using `archinstall` and choose the desktop profile with i3-wm. Select the "en_US.UTF-8" and "nl_NL.UTF-8" locales. 
 Also make sure you don't create a seperate partition for /home (this may lead to storage problems with many pacman packages and docker images).
 
 ### 2 - Execute the install script
