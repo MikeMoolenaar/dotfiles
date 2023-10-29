@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-export EDITOR=/bin/vim
+export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 zstyle ":omz:plugins:ssh-agent" quiet yes
