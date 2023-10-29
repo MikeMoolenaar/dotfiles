@@ -24,7 +24,8 @@ PROMPT_EOL_MARK='' # Remove percentage sign for partial lines (mainly happens wi
 alias c="clear"
 alias s="source ~/.zshrc"
 alias r="ranger"
-alias v="vim"
+alias v="nvim"
+alias vim="nvim"
 alias python="python3"
 cheat() { curl cheat.sh/$1; }
 alias yay="paru"
@@ -75,7 +76,7 @@ tv0() {
 # eval "$(github-copilot-cli alias -- "$0")"
 
 # Do not source on init because its quite slow
-alias init-nvm="source /usr/share/nvm/init-nvm.sh"
+alias nvm-init="source /usr/share/nvm/init-nvm.sh"
 
 # Pipx places binaries in this folder
 export PATH="$PATH:/home/mike/.local/bin"

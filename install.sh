@@ -40,12 +40,10 @@ if [[ $(which docker) ]]; then
 fi
 espanso service register
 
-# Setup zsh and vim
+# Setup zsh
 ln -s ~/.config/zsh/.zshrc ~/.zshrc
-ln -s ~/.config/vim/.vimrc ~/.vimrc
 
 chsh -s /bin/zsh
-vim -c PlugInstall
 
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc

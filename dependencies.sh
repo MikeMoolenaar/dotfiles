@@ -9,8 +9,9 @@ rofi-calc
 copyq
 flameshot
 dotnet-sdk
-# dotnet-sdk-preview-bin # Latest dotnet beta sdk
-os-prober
+aspnet-runtime
+# dotnet-sdk-preview-bin 
+# aspnet-runtime-preview-bin os-prober
 dunst
 jq
 espanso-git
@@ -21,7 +22,8 @@ highlight
 htop
 gvim # Contains clipboard modules
 vim-plug
-nvim
+neovim
+ripgrep
 unzip
 # discord
 xss-lock

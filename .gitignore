@@ -9,6 +9,7 @@ alacritty/themes/
 !ranger/**
 !vim/**
 !nvim/**
+nvim/lazy-lock.json
 !zsh/**
 !feh/**
 !dunst/**
