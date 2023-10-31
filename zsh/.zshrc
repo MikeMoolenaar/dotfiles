@@ -25,6 +25,7 @@ alias c="clear"
 alias s="source ~/.zshrc"
 alias r="ranger"
 alias v="nvim"
+alias g="gitui"
 alias vim="nvim"
 alias python="python3"
 cheat() { curl cheat.sh/$1; }

@@ -64,10 +64,11 @@ require("lazy").setup({
       "stevearc/dressing.nvim"
     }
   },
-  { "nvim-treesitter/nvim-treesitter",  build = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  'dstein64/vim-startuptime',
 
   -- Lsp stuff
-  { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+  { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'neovim/nvim-lspconfig' },
@@ -77,26 +78,24 @@ require("lazy").setup({
   { 'L3MON4D3/LuaSnip' },
 
   {
-    -- Set lualine as statusline
+    -- See :help lualine.txt
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'onedark',
+        icons_enabled = true,
+        theme = 'auto',
         component_separators = '|',
-        section_separators = '',
       },
     },
   },
 
   {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
+    -- :help indent_blankline.txt
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      indent = { char = "┇" }
+    }
   },
 
   {
@@ -157,7 +156,7 @@ require("neo-tree").setup({
   window = {
     width = 30,
     mappings = {
-      ["<C-j>"] = "toggle_node"
+      ["<C-j>"] = "toggle_node",
     }
   }
 })
@@ -170,7 +169,7 @@ require("telescope").setup{
   defaults = {
     mappings = {
       i = {
-        ["<esc>"] = actions.close
+        ["<esc>"] = actions.close,
       },
     },
   }
