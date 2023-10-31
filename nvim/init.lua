@@ -5,7 +5,6 @@ set cursorline
 set scrolloff=5
 set showmode "Like, VISUAL or INSERT
 set mouse=a "Can use mouse in [a]ll modes
-set fillchars=vert:\│ "Change seperator line to continous non-dashed line
 set hlsearch "Highlight all search result
 set incsearch "show search results as you type
 set guicursor= "Set guicursor to block in nvim
@@ -40,7 +39,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
@@ -49,9 +48,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   "nvim-lualine/lualine.nvim",
-	"preservim/nerdcommenter",
+  "preservim/nerdcommenter",
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.3',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.3',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
   "airblade/vim-rooter",
@@ -64,17 +64,17 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
     }
   },
-	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  { "nvim-treesitter/nvim-treesitter",  build = ":TSUpdate" },
 
   -- Lsp stuff
-	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-  {'williamboman/mason.nvim'},
-  {'williamboman/mason-lspconfig.nvim'},
-  {'neovim/nvim-lspconfig'},
-  {'simrat39/rust-tools.nvim'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},
-  {'L3MON4D3/LuaSnip'},
+  { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+  { 'williamboman/mason.nvim' },
+  { 'williamboman/mason-lspconfig.nvim' },
+  { 'neovim/nvim-lspconfig' },
+  { 'simrat39/rust-tools.nvim' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/nvim-cmp' },
+  { 'L3MON4D3/LuaSnip' },
 
   {
     -- Set lualine as statusline
@@ -140,8 +140,8 @@ require("lazy").setup({
     },
   },
 
-    -- "gcc" to comment lines and "gc" in visual mode
-    { 'numToStr/Comment.nvim', opts = {} },
+  -- "gcc" to comment lines and "gc" in visual mode
+  { 'numToStr/Comment.nvim', opts = {} },
 
 })
 
@@ -156,7 +156,7 @@ vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 --vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "c", "lua", "vim", "rust", "javascript", "typescript", "bash", "html", "css" },
 
@@ -181,10 +181,10 @@ require'nvim-treesitter.configs'.setup {
 vim.treesitter.language.register("bash", "zsh")
 
 local lsp_zero = require('lsp-zero')
-lsp_zero.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(_, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
+  lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
 
@@ -193,7 +193,7 @@ end)
 -- to learn how to use mason.nvim with lsp-zero
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'rust_analyzer'},
+  ensure_installed = { 'rust_analyzer' },
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -203,7 +203,7 @@ require('mason-lspconfig').setup({
   }
 })
 local lspconfig = require('lspconfig')
-lspconfig.htmx.setup{}
+lspconfig.htmx.setup {}
 
 local rt = require("rust-tools")
 rt.setup({
@@ -218,7 +218,7 @@ rt.setup({
 })
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 local kind_icons = {
   Text = "",
@@ -249,10 +249,16 @@ local kind_icons = {
 }
 
 cmp.setup({
+  -- Preselect first item
+  preselect = 'item',
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
+
   sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp'},
-    {name = 'nvim_lua'},
+    { name = 'path' },
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
   },
   formatting = {
     format = function(entry, vim_item)
@@ -278,5 +284,5 @@ cmp.setup({
   }),
 })
 
-vim.keymap.set('n', '<leader>r', '<Cmd>Neotree toggle<CR>')
-
+vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end)
+vim.keymap.set('n', '<leader>w', '<Cmd>Neotree toggle<CR>')

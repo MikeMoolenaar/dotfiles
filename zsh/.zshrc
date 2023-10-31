@@ -33,7 +33,7 @@ alias parus="paru -S"
 alias parur="paru -R"
 alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo lazydocker"
-alias esp="EDITOR=/usr/bin/vim espanso edit"
+alias esp="espanso edit"
 alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
 alias blb="bluetoothctl disconnect; bluetoothctl connect A0:D0:5B:A5:4E:74" # Soundbar
 alias blh="bluetoothctl disconnect; bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones
