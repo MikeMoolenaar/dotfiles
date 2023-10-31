@@ -22,7 +22,6 @@ nmap Y "+y
 vmap Y "+y
 
 autocmd BufRead,BufNewFile *.jsm set filetype=javascript
-
 " Let Telescope find in the project dir instead of /
 let g:rooter_patterns = ['.git', '.svn', '!node_modules']
 nnoremap <expr> sp ':Telescope find_files cwd='.FindRootDirectory().'/<cr>'
@@ -62,6 +61,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
+      "stevearc/dressing.nvim"
     }
   },
   { "nvim-treesitter/nvim-treesitter",  build = ":TSUpdate" },
@@ -145,11 +145,36 @@ require("lazy").setup({
 
 })
 
+require("catppuccin").setup({
+  transparent_background = true,
+})
 vim.cmd('colorscheme catppuccin')
+
+-- https://github.com/nvim-neo-tree/neo-tree.nvim#quickstart
+require("neo-tree").setup({
+  popup_border_style = "rounded",
+  use_popups_for_input = false,
+  window = {
+    width = 30,
+    mappings = {
+      ["<C-j>"] = "toggle_node"
+    }
+  }
+})
 
 require('lualine').setup({})
 
 local builtin = require('telescope.builtin')
+local actions = require("telescope.actions")
+require("telescope").setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close
+      },
+    },
+  }
+}
 vim.keymap.set('n', '<leader>f', builtin.git_files, {})
 vim.keymap.set('n', '<leader>s', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
@@ -186,8 +211,6 @@ lsp_zero.on_attach(function(_, bufnr)
   -- to learn the available actions
   lsp_zero.default_keymaps({ buffer = bufnr })
 end)
-
-
 
 -- see :help lsp-zero-guide:integrate-with-mason-nvim
 -- to learn how to use mason.nvim with lsp-zero
