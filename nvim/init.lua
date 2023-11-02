@@ -225,7 +225,12 @@ require('mason-lspconfig').setup({
   }
 })
 local lspconfig = require('lspconfig')
-lspconfig.htmx.setup {}
+lspconfig.htmx.setup {
+  filetypes = { "html", "htmldjango" },
+}
+lspconfig.html.setup {
+  filetypes = { "html", "htmldjango" },
+};
 
 local rt = require("rust-tools")
 rt.setup({
