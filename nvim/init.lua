@@ -1,5 +1,6 @@
 -- Dependencies:
 -- - ripgrep (telescope live grep)
+-- - fzf (improve fuzzy search in telescope)
 vim.cmd([[
 set number
 set relativenumber
@@ -9,17 +10,20 @@ set showmode "Like, VISUAL or INSERT
 set mouse=a "Can use mouse in [a]ll modes
 set hlsearch "Highlight all search result
 set incsearch "show search results as you type
-set guicursor= "Set guicursor to block in nvim
+set guicursor= "Set guicursor to block in neovim
+set ignorecase "Ignore case when searching
+set smartcase "Unless we explicitly use cases in search
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
 
+
 let mapleader=" "
 inoremap jk <ESC>
 
-" Easy yank to system clipoard
+" Easy yank to system clipboard
 nmap Y "+y
 vmap Y "+y
 
@@ -30,9 +34,14 @@ let g:rooter_patterns = ['.git', '.svn', '!node_modules']
 nnoremap <expr> sp ':Telescope find_files cwd='.FindRootDirectory().'/<cr>'
 nnoremap <expr> sp ':Telescope grep_string cwd='.FindRootDirectory().'/<cr>'
 
-" Reload nvim config
+" Reload neovim config
 nnoremap <silent> <Leader>rc :source $MYVIMRC<cr>
 ]])
+
+-- z= to see suggestions, zg to add to dictonairy
+-- Set up automatic spell checking
+vim.opt.spelllang = "en"
+vim.opt.spell = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -54,7 +63,10 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.3",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-fzf-native.nvim",
+		},
 	},
 	"airblade/vim-rooter",
 	{
@@ -75,7 +87,7 @@ require("lazy").setup({
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
-			vim.o.timeoutlen = 300
+			vim.o.timeoutlen = 500
 		end,
 		opts = {
 			-- your configuration comes here
@@ -91,9 +103,21 @@ require("lazy").setup({
 	{ "simrat39/rust-tools.nvim" },
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },
 	{ "mhartington/formatter.nvim" },
+
+	-- LSP progress
+	{
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
+		opts = {
+			-- options
+		},
+	},
 
 	{
 		-- See :help lualine.txt
@@ -191,6 +215,7 @@ require("telescope").setup({
 		},
 	},
 })
+require("telescope").load_extension("fzf")
 vim.keymap.set("n", "<leader>f", builtin.git_files, {})
 vim.keymap.set("n", "<leader>s", builtin.grep_string, {})
 vim.keymap.set("n", "<leader>g", builtin.live_grep, {})
@@ -250,10 +275,11 @@ lspconfig.html.setup({
 
 local rt = require("rust-tools")
 rt.setup({
+	tools = {
+		inlay_hints = { auto = false },
+	},
 	server = {
 		on_attach = function(_, bufnr)
-			-- Hover actions
-			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
 			-- Code action groups
 			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 		end,
@@ -326,6 +352,25 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 	}),
 })
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
+	}),
+})
 
 vim.keymap.set("n", "<leader>rn", function()
 	vim.lsp.buf.rename()
@@ -392,3 +437,14 @@ augroup FormatAutogroup
   autocmd BufWritePost * FormatWrite
 augroup END
 ]])
+
+vim.diagnostic.config({
+	virtual_text = {
+		format = function(diagnostic)
+			local lines = vim.split(diagnostic.message, "\n")
+			return lines[1]
+		end,
+		virt_text_pos = "right_align",
+		suffix = " ",
+	},
+})
