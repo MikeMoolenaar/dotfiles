@@ -6,3 +6,8 @@ Lsp
 config
 telescope
 fzf
+hey
+StartupTime
+TODO
+Deserialize
+redis

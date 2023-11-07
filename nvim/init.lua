@@ -1,4 +1,4 @@
--- Dependencies:
+-- System dependencies:
 -- - ripgrep (telescope live grep)
 -- - fzf (improve fuzzy search in telescope)
 vim.cmd([[
@@ -19,7 +19,6 @@ set shiftwidth=2
 set expandtab
 set smartindent
 
-
 let mapleader=" "
 inoremap jk <ESC>
 
@@ -38,7 +37,7 @@ nnoremap <expr> sp ':Telescope grep_string cwd='.FindRootDirectory().'/<cr>'
 nnoremap <silent> <Leader>rc :source $MYVIMRC<cr>
 ]])
 
--- z= to see suggestions, zg to add to dictonairy
+-- z= to see suggestions, zg to add to dictionary
 -- Set up automatic spell checking
 vim.opt.spelllang = "en"
 vim.opt.spell = true
@@ -80,7 +79,14 @@ require("lazy").setup({
 		},
 	},
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+
+	-- :StartupTime
 	"dstein64/vim-startuptime",
+
+	-- switch (like, true/false) with key `gs`
+	-- also works in markdown checklists
+	-- https://github.com/AndrewRadev/switch.vim
+	"AndrewRadev/switch.vim",
 
 	{
 		"folke/which-key.nvim",
@@ -185,6 +191,7 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim", opts = {} },
 })
 
+-- Mmmmmm theme
 require("catppuccin").setup({
 	transparent_background = true,
 })
@@ -202,8 +209,10 @@ require("neo-tree").setup({
 	},
 })
 
+-- Status line
 require("lualine").setup({})
 
+-- Telescope for finding files and searching for strings, and more...
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 require("telescope").setup({
@@ -222,8 +231,9 @@ vim.keymap.set("n", "<leader>g", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>b", builtin.buffers, {})
 -- vim.keymap.set("n", "<leader>h", builtin.help_tags, {})
 
+-- Treesitter for syntax highlighting + parsing syntax stuff (idk actually)
 require("nvim-treesitter.configs").setup({
-	-- A list of parser names, or "all" (the five listed parsers should always be installed)
+	-- A list of parser names, or "all"
 	ensure_installed = { "c", "lua", "vim", "rust", "javascript", "typescript", "bash", "html", "css" },
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
@@ -386,7 +396,6 @@ local prettierd = function()
 	}
 end
 
-local util = require("formatter.util")
 require("formatter").setup({
 	logging = true,
 	log_level = vim.log.levels.WARN,
@@ -395,31 +404,10 @@ require("formatter").setup({
 		htmldjango = { prettierd },
 		html = { prettierd },
 		lua = {
-			-- "formatter.filetypes.lua" defines default configurations for the
-			-- "lua" filetype
 			require("formatter.filetypes.lua").stylua,
-
-			-- You can also define your own configuration
-			function()
-				-- Supports conditional formatting
-				if util.get_current_buffer_file_name() == "special.lua" then
-					return nil
-				end
-
-				-- Full specification of configurations is down below and in Vim help
-				-- files
-				return {
-					exe = "stylua",
-					args = {
-						"--search-parent-directories",
-						"--stdin-filepath",
-						util.escape_path(util.get_current_buffer_file_path()),
-						"--",
-						"-",
-					},
-					stdin = true,
-				}
-			end,
+		},
+		rust = {
+			require("formatter.filetypes.rust").rustfmt,
 		},
 
 		["*"] = {
@@ -444,7 +432,7 @@ vim.diagnostic.config({
 			local lines = vim.split(diagnostic.message, "\n")
 			return lines[1]
 		end,
-		virt_text_pos = "right_align",
+		virt_text_pos = "right_align", -- Not supported yet...
 		suffix = " ",
 	},
 })

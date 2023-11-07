@@ -10,7 +10,7 @@ copyq
 flameshot
 dotnet-sdk
 aspnet-runtime
-# dotnet-sdk-preview-bin 
+# dotnet-sdk-preview-bin
 # aspnet-runtime-preview-bin os-prober
 dunst
 jq
@@ -24,6 +24,7 @@ gvim # Contains clipboard modules
 vim-plug
 neovim
 ripgrep
+fzf
 unzip
 # discord
 xss-lock
@@ -66,11 +67,11 @@ lazydocker
 whois
 xsel
 # imhex-bin # hex editor
-# wine-stable 
+# wine-stable
 # wine-mono
 #=> Libreoffice
 libreoffice-fresh
-hunspell 
+hunspell
 hunspell-en_gb
 #=>
 #=> VM related stuff
@@ -80,4 +81,4 @@ hunspell-en_gb
 #=>
 # anki
 # mkvalidator
-# yazi-git
+# yazi-bin
