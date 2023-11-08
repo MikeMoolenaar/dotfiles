@@ -4,6 +4,8 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+source .zshrc-personal 2> /dev/null
+
 zstyle ":omz:plugins:ssh-agent" quiet yes
 plugins=(
   git
@@ -55,7 +57,7 @@ gitopen() {
   git remote -v | head -n 1 | awk -F " " '{print $2}' | sed 's/\.git//g' | sed 's/git\@github\.com:/https:\/\/github\.com\//g' | xargs firefox --new-tab &
 }
 
-# Show installed packages 
+# Show installed packages
 installed() {
   pacman -Qqett | sort
 }
