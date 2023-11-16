@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH=$PATH:$(go env GOPATH)/bin
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
@@ -40,7 +41,7 @@ alias esp="espanso edit"
 alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
 alias blb="bluetoothctl disconnect; bluetoothctl connect A0:D0:5B:A5:4E:74" # Soundbar
 alias blh="bluetoothctl disconnect; bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones
-alias bld="bluetoothctl disconnect; bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
+alias bld="bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
 alias docker="sudo docker"
 alias sit="bld && idasen-controller --move-to sit"
 alias stand="bld && idasen-controller --move-to stand"
@@ -65,7 +66,7 @@ installed() {
 tv1() {
   # Enable flipping to prevent tearing
   nvidia-settings -l -a "AllowFlipping=1"
-  xrandr --output HDMI-1 --mode 3840x2160 --rate 60 --above DP-2
+  xrandr --output HDMI-1 --mode 1920x1080 --rate 60 --above DP-2
   echo "TV connected"
 }
 

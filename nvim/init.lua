@@ -225,10 +225,11 @@ require("telescope").setup({
 	},
 })
 require("telescope").load_extension("fzf")
-vim.keymap.set("n", "<leader>f", builtin.git_files, {})
-vim.keymap.set("n", "<leader>s", builtin.grep_string, {})
-vim.keymap.set("n", "<leader>g", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>b", builtin.buffers, {})
+vim.keymap.set("n", "<leader>f", builtin.git_files, { desc = "Telescope git files" })
+vim.keymap.set("n", "<leader>v", builtin.find_files, { desc = "Telescope all files" })
+vim.keymap.set("n", "<leader>s", builtin.grep_string, { desc = "Telescope string search" })
+vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Telescope live search" })
+vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope search current string" })
 -- vim.keymap.set("n", "<leader>h", builtin.help_tags, {})
 
 -- Treesitter for syntax highlighting + parsing syntax stuff (idk actually)
@@ -266,7 +267,15 @@ end)
 -- to learn how to use mason.nvim with lsp-zero
 require("mason").setup({})
 require("mason-lspconfig").setup({
-	ensure_installed = { "rust_analyzer" },
+	ensure_installed = {
+		"cssls",
+		"html",
+		"lua_ls",
+		"rust_analyzer",
+		-- "stylua",
+		-- "gopls",
+		-- "htmx",
+	},
 	handlers = {
 		lsp_zero.default_setup,
 		lua_ls = function()
@@ -291,7 +300,12 @@ rt.setup({
 	server = {
 		on_attach = function(_, bufnr)
 			-- Code action groups
-			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+			vim.keymap.set(
+				"n",
+				"<Leader>a",
+				rt.code_action_group.code_action_group,
+				{ buffer = bufnr, desc = "Rust actions" }
+			)
 		end,
 	},
 })
@@ -384,7 +398,7 @@ cmp.setup.cmdline(":", {
 
 vim.keymap.set("n", "<leader>rn", function()
 	vim.lsp.buf.rename()
-end)
+end, { desc = "Rename with LSP" })
 vim.keymap.set("n", "<leader>w", "<Cmd>Neotree toggle<CR>")
 
 -- Formatting
