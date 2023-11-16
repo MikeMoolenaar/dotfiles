@@ -79,6 +79,7 @@ require("lazy").setup({
 		},
 	},
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	"github/copilot.vim",
 
 	-- :StartupTime
 	"dstein64/vim-startuptime",
@@ -211,6 +212,12 @@ require("neo-tree").setup({
 
 -- Status line
 require("lualine").setup({})
+
+-- Setup copilot
+vim.cmd([[
+  imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+  let g:copilot_no_tab_map = v:true
+]])
 
 -- Telescope for finding files and searching for strings, and more...
 local builtin = require("telescope.builtin")
