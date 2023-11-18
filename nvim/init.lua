@@ -21,6 +21,7 @@ set smartindent
 
 let mapleader=" "
 inoremap jk <ESC>
+inoremap <C-c> <ESC>
 
 " Easy yank to system clipboard
 nmap Y "+y
@@ -78,6 +79,7 @@ require("lazy").setup({
 			"stevearc/dressing.nvim",
 		},
 	},
+	"ThePrimeagen/harpoon",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"github/copilot.vim",
 
@@ -198,6 +200,29 @@ require("catppuccin").setup({
 })
 vim.cmd("colorscheme catppuccin")
 
+-- Harpoon
+require("harpoon").setup()
+local harpoonmarker = require("harpoon.mark")
+local harpoonui = require("harpoon.ui")
+vim.keymap.set("n", "<leader>u", harpoonui.toggle_quick_menu, { desc = "Harpoon menu" })
+vim.keymap.set("n", "<leader>a", harpoonmarker.add_file, { desc = "Harpoon add file" })
+
+vim.keymap.set("n", "<leader>j", function()
+	harpoonui.nav_file(1)
+end, { desc = "Harpoon jump to file 1" })
+vim.keymap.set("n", "<leader>k", function()
+	harpoonui.nav_file(2)
+end, { desc = "Harpoon jump to file 2" })
+vim.keymap.set("n", "<leader>l", function()
+	harpoonui.nav_file(3)
+end, { desc = "Harpoon jump to file 3" })
+vim.keymap.set("n", "<leader>;", function()
+	harpoonui.nav_file(4)
+end, { desc = "Harpoon jump to file 4" })
+vim.keymap.set("n", "<leader>'", function()
+	harpoonui.nav_file(5)
+end, { desc = "Harpoon jump to file 5" })
+
 -- https://github.com/nvim-neo-tree/neo-tree.nvim#quickstart
 require("neo-tree").setup({
 	popup_border_style = "rounded",
@@ -309,7 +334,7 @@ rt.setup({
 			-- Code action groups
 			vim.keymap.set(
 				"n",
-				"<Leader>a",
+				"<Leader>r",
 				rt.code_action_group.code_action_group,
 				{ buffer = bufnr, desc = "Rust actions" }
 			)
