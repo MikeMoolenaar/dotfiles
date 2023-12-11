@@ -30,14 +30,14 @@ font pango:DejaVu Sans Mono 0
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit
 
-# Color shemes for windows 
+# Color shemes for windows
 set $bgcolor    #523d64
 set $in-bgcolor #363636
 set $text       #ffffff
 set $u-bgcolor  #ff0000
 set $indicator  #a8a3c1
 set $in-text    #969696
-#                       border          background      text            indicator (a line which shows where the next window will be placed)     
+#                       border          background      text            indicator (a line which shows where the next window will be placed)
 client.focused          $bgcolor        $bgcolor        $text           $indicator
 client.unfocused        $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
 client.focused_inactive $in-bgcolor     $in-bgcolor     $in-text        $in-bgcolor
@@ -107,7 +107,7 @@ bindsym $mod+Shift+w exec copyq show
 bindsym Ctrl+Shift+s exec ~/.config/scripts/search.sh
 bindsym Ctrl+Shift+e exec ~/.config/scripts/ocr-jp.sh -t
 
-# start rofi 
+# start rofi
 bindsym $mod+d exec --no-startup-id "rofi -show combi -combi-modes 'window,drun' -modes combi"
 bindsym $mod+c exec --no-startup-id LC_MONETARY=nl_NL.UTF-8 rofi -show calc -modi calc -no-show-match -no-sort
 bindsym $mod+g exec ~/.config/scripts/rofi-terminal.sh
@@ -254,9 +254,9 @@ bindsym $mod+r mode "resize"
 #}
 
 # Display stuff
-exec_always --no-startup-id xrandr --output DP-2 --mode 2560x1440 --rate 165 --preferred
-exec_always --no-startup-id sleep 1 && xrandr --output HDMI-0 --left-of DP-2
-exec_always --no-startup-id sleep 2 && xrandr --output DP-0 --right-of DP-2
+exec_always --no-startup-id xrandr --output DP-0 --mode 2560x1440 --rate 165 --preferred
+exec_always --no-startup-id sleep 1 && xrandr --output HDMI-0 --left-of DP-0
+exec_always --no-startup-id sleep 2 && xrandr --output DP-2 --right-of DP-0
 
 exec --no-startup-id nvidia-settings -l -a "AllowFlipping=0"
 exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf

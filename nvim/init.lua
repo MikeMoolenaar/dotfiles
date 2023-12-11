@@ -21,7 +21,7 @@ set smartindent
 
 let mapleader=" "
 inoremap jk <ESC>
-inoremap <C-c> <ESC>
+nnoremap <C-c> <ESC>
 
 " Easy yank to system clipboard
 nmap Y "+y
@@ -200,6 +200,10 @@ require("catppuccin").setup({
 })
 vim.cmd("colorscheme catppuccin")
 
+-- Custom comment.nvim config
+local ft = require("Comment.ft")
+ft.systemd = "#%s"
+
 -- Harpoon
 require("harpoon").setup()
 local harpoonmarker = require("harpoon.mark")
@@ -240,7 +244,7 @@ require("lualine").setup({})
 
 -- Setup copilot
 vim.cmd([[
-  imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+  imap <silent><script><expr> <C-Space> copilot#Accept("\<CR>")
   let g:copilot_no_tab_map = v:true
 ]])
 
@@ -267,7 +271,7 @@ vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope search cur
 -- Treesitter for syntax highlighting + parsing syntax stuff (idk actually)
 require("nvim-treesitter.configs").setup({
 	-- A list of parser names, or "all"
-	ensure_installed = { "c", "lua", "vim", "rust", "javascript", "typescript", "bash", "html", "css" },
+	ensure_installed = { "c", "lua", "vim", "rust", "javascript", "typescript", "bash", "html", "css", "dockerfile" },
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -320,6 +324,7 @@ local lspconfig = require("lspconfig")
 lspconfig.htmx.setup({
 	filetypes = { "html", "htmldjango" },
 })
+
 lspconfig.html.setup({
 	filetypes = { "html", "htmldjango" },
 })
@@ -405,7 +410,7 @@ cmp.setup({
 		["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 		["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
 		["<Tab>"] = cmp.mapping.confirm({ select = true }),
-		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-l>"] = cmp.mapping.complete(),
 	}),
 })
 cmp.setup.cmdline("/", {
@@ -482,3 +487,26 @@ vim.diagnostic.config({
 		suffix = " ",
 	},
 })
+
+-- for htmx-lsp development
+--[[
+id = vim.lsp.start_client({
+	cmd = { "/home/mike/git/htmx-lsp/target/debug/htmx-lsp", "--level", "INFO" },
+	filetypes = { "html", "htmldjango" },
+	root_dir = vim.loop.cwd(),
+})
+local function attach_lsp(args)
+	if id == nil then
+		return
+	end
+
+	local bufnr = vim.api.nvim_get_current_buf()
+	if not vim.lsp.buf_is_attached(bufnr, id) then
+		vim.lsp.buf_attach_client(bufnr, id)
+	end
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = attach_lsp,
+})
+--]]

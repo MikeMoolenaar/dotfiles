@@ -1,7 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export FLYCTL_INSTALL="/home/mike/.fly"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH=$PATH:$(go env GOPATH)/bin
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
@@ -18,6 +20,7 @@ plugins=(
   ssh-agent
 )
 source $ZSH/oh-my-zsh.sh
+bindkey '^ ' autosuggest-accept # Ctrl + Space to accept suggestion
 
 unsetopt HIST_VERIFY # Disable preview when typing !!, just execute the command
 setopt histignorespace # Commands starting with space will not be saved to history
@@ -27,8 +30,9 @@ PROMPT_EOL_MARK='' # Remove percentage sign for partial lines (mainly happens wi
 alias c="clear"
 alias s="source ~/.zshrc"
 alias r="ranger"
-alias v="nvim"
 alias g="gitui"
+alias v="nvim"
+alias sudovim="sudo -Es  nvim"
 alias vim="nvim"
 alias python="python3"
 cheat() { curl cheat.sh/$1; }
@@ -38,6 +42,7 @@ alias parur="paru -R"
 alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo lazydocker"
 alias esp="espanso edit"
+alias disk_usage="du -hc --max-depth=1"
 alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
 alias blb="bluetoothctl disconnect; bluetoothctl connect A0:D0:5B:A5:4E:74" # Soundbar
 alias blh="bluetoothctl disconnect; bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones

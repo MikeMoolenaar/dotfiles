@@ -63,6 +63,7 @@ python-pipx # Handy for CLI's written in python
 # freerdp
 docker
 docker-compose
+docker-buildx
 lazydocker
 whois
 xsel
