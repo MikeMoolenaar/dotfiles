@@ -141,6 +141,16 @@ require("lazy").setup({
 	},
 
 	{
+		"RRethy/vim-illuminate",
+		event = "LspAttach",
+		opts = {
+			delay = 200,
+		},
+		config = function(_, opts)
+			require("illuminate").configure(opts)
+		end,
+	},
+	{
 		-- :help indent_blankline.txt
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -163,29 +173,11 @@ require("lazy").setup({
 			},
 			on_attach = function(bufnr)
 				local gs = require("gitsigns")
-				-- See https://github.com/lewis6991/gitsigns.nvim#keymaps
+				-- Cusom keybindings
 				vim.keymap.set("n", "<leader>hp", gs.preview_hunk, { buffer = bufnr, desc = "Preview git hunk" })
 				vim.keymap.set("n", "<leader>hr", gs.reset_hunk, { buffer = bufnr, desc = "Reset git hunk" })
-
-				-- don't override the built-in and fugitive keymaps
-				vim.keymap.set({ "n", "v" }, "]c", function()
-					if vim.wo.diff then
-						return "]c"
-					end
-					vim.schedule(function()
-						gs.next_hunk()
-					end)
-					return "<Ignore>"
-				end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
-				vim.keymap.set({ "n", "v" }, "[c", function()
-					if vim.wo.diff then
-						return "[c"
-					end
-					vim.schedule(function()
-						gs.prev_hunk()
-					end)
-					return "<Ignore>"
-				end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
+				vim.keymap.set("n", "]g", gs.next_hunk, { buffer = bufnr, desc = "Next git hunk" })
+				vim.keymap.set("n", "[g", gs.prev_hunk, { buffer = bufnr, desc = "Previous git hunk" })
 			end,
 		},
 	},
@@ -329,6 +321,14 @@ lspconfig.html.setup({
 	filetypes = { "html", "htmldjango" },
 })
 
+-- Next/prev reference
+local illuminate = require("illuminate")
+local function map_illuminate(key, dir, buffer)
+	vim.keymap.set("n", key, function()
+		illuminate["goto_" .. dir .. "_reference"](false)
+	end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+end
+
 local rt = require("rust-tools")
 rt.setup({
 	tools = {
@@ -343,6 +343,10 @@ rt.setup({
 				rt.code_action_group.code_action_group,
 				{ buffer = bufnr, desc = "Rust actions" }
 			)
+
+			-- Must define here becuase rust-tools overrides the default
+			map_illuminate("]]", "next")
+			map_illuminate("[[", "prev")
 		end,
 	},
 })
@@ -477,6 +481,7 @@ augroup FormatAutogroup
 augroup END
 ]])
 
+-- Diagonstics
 vim.diagnostic.config({
 	virtual_text = {
 		format = function(diagnostic)
@@ -487,6 +492,23 @@ vim.diagnostic.config({
 		suffix = " ",
 	},
 })
+
+-- Custom keybindings for diagnostics
+-- Source https://www.joshmedeski.com/posts/underrated-square-bracket/
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
+vim.keymap.set("n", "]e", function()
+	vim.diagnostic.goto_next({ severity = "ERROR" })
+end, { desc = "Next Error" })
+vim.keymap.set("n", "[e", function()
+	vim.diagnostic.goto_prev({ severity = "ERROR" })
+end, { desc = "Prev Error" })
+vim.keymap.set("n", "]w", function()
+	vim.diagnostic.goto_next({ severity = "WARN" })
+end, { desc = "Next Warning" })
+vim.keymap.set("n", "[w", function()
+	vim.diagnostic.goto_prev({ severity = "WARN" })
+end, { desc = "Prev Warning" })
 
 -- for htmx-lsp development
 --[[

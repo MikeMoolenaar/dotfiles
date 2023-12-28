@@ -52,6 +52,8 @@ alias sit="bld && idasen-controller --move-to sit" # Requires "pipx install idas
 alias stand="bld && idasen-controller --move-to stand"
 alias curltime="curl -Ls --output /dev/null -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
 alias windows="sudo grub-reboot 'Windows 10 (on /dev/sdb1)' && systemctl reboot"
+zv() { z $1 && nvim .; }
+alias ziv="zi && nvim ."
 
 
 mkcdir() {
@@ -91,3 +93,4 @@ alias nvm-init="source /usr/share/nvm/init-nvm.sh"
 export PATH="$PATH:/home/mike/.local/bin"
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
