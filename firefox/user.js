@@ -267,7 +267,13 @@ user_pref("browser.tabs.loadBookmarksInTabs", false);
 
 // Force kanji to show in the japanese style
 user_pref("font.cjk_pref_fallback_order", "ja,zh-cn,zh-hk,zh-tw,ko");
+
+// Some performance tweaks
+user_pref("network.dns.disablePrefetch", false);
+user_pref("network.prefetch-next", true);
+user_pref("network.predictor.enabled", true);
+user_pref("network.dns.disablePrefetchFromHTTPS", false);
+user_pref("network.predictor.enable-hover-on-ssl", true);
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/
-
