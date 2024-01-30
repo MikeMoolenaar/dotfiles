@@ -82,6 +82,7 @@ require("lazy").setup({
 	"ThePrimeagen/harpoon",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"github/copilot.vim",
+	{ "folke/todo-comments.nvim", opts = {} },
 
 	-- :StartupTime
 	"dstein64/vim-startuptime",
@@ -117,6 +118,7 @@ require("lazy").setup({
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },
 	{ "mhartington/formatter.nvim" },
+	{ "dawsers/edit-code-block.nvim" },
 
 	-- LSP progress
 	{
@@ -240,6 +242,16 @@ vim.cmd([[
   let g:copilot_no_tab_map = v:true
 ]])
 
+-- Open code block in buffer so LSP works.
+-- TODO: currently, must call :LspRestart to get LSP to work again
+-- Setup https://github.com/dawsers/edit-code-block.nvim
+require("ecb").setup({
+	wincmd = "split", -- this is the default way to open the code block window
+})
+
+local todo_comments = require("todo-comments")
+todo_comments.setup()
+
 -- Telescope for finding files and searching for strings, and more...
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
@@ -285,6 +297,7 @@ require("nvim-treesitter.configs").setup({
 vim.treesitter.language.register("bash", "zsh")
 
 local lsp_zero = require("lsp-zero")
+lsp_zero.preset("recommended")
 lsp_zero.on_attach(function(_, bufnr)
 	-- see :help lsp-zero-keybindings
 	-- to learn the available actions
@@ -300,6 +313,7 @@ require("mason-lspconfig").setup({
 		"html",
 		"lua_ls",
 		"rust_analyzer",
+		"tsserver",
 		-- "stylua",
 		-- "gopls",
 		-- "htmx",
@@ -320,6 +334,13 @@ lspconfig.htmx.setup({
 lspconfig.html.setup({
 	filetypes = { "html", "htmldjango" },
 })
+lspconfig.tsserver.setup({
+	filetypes = { "typescript", "javascript" },
+})
+
+-- Autocomplete stuff
+local cmp = require("cmp")
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 -- Next/prev reference
 local illuminate = require("illuminate")
@@ -350,10 +371,6 @@ rt.setup({
 		end,
 	},
 })
-
--- Autocomplete stuff
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 local kind_icons = {
 	Text = "",
@@ -456,8 +473,8 @@ require("formatter").setup({
 	log_level = vim.log.levels.WARN,
 	filetype = {
 
-		htmldjango = { prettierd },
-		html = { prettierd },
+		-- htmldjango = { prettierd },
+		-- html = { prettierd },
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
@@ -468,7 +485,7 @@ require("formatter").setup({
 		["*"] = {
 			-- "formatter.filetypes.any" defines default configurations for any
 			-- filetype
-			require("formatter.filetypes.any").remove_trailing_whitespace,
+			-- require("formatter.filetypes.any").remove_trailing_whitespace,
 		},
 	},
 })
@@ -495,20 +512,34 @@ vim.diagnostic.config({
 
 -- Custom keybindings for diagnostics
 -- Source https://www.joshmedeski.com/posts/underrated-square-bracket/
+--
+-- -- Diagnostic general
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
+
+-- Diagnostic error
 vim.keymap.set("n", "]e", function()
 	vim.diagnostic.goto_next({ severity = "ERROR" })
 end, { desc = "Next Error" })
 vim.keymap.set("n", "[e", function()
 	vim.diagnostic.goto_prev({ severity = "ERROR" })
 end, { desc = "Prev Error" })
+
+-- Diagnostic warning
 vim.keymap.set("n", "]w", function()
 	vim.diagnostic.goto_next({ severity = "WARN" })
 end, { desc = "Next Warning" })
 vim.keymap.set("n", "[w", function()
 	vim.diagnostic.goto_prev({ severity = "WARN" })
 end, { desc = "Prev Warning" })
+
+-- TODO
+vim.keymap.set("n", "]t", function()
+	todo_comments.jump_next()
+end, { desc = "Next TODO" })
+vim.keymap.set("n", "[t", function()
+	todo_comments.jump_prev()
+end, { desc = "Previous TODO" })
 
 -- for htmx-lsp development
 --[[

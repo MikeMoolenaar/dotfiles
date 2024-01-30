@@ -32,6 +32,7 @@ alias s="source ~/.zshrc"
 alias r="ranger"
 alias g="gitui"
 alias v="nvim"
+woops() { trap 'zsh -i' INT }
 alias sudovim="sudo -Es  nvim"
 alias vim="nvim"
 alias python="python3"
