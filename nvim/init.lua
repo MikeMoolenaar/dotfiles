@@ -13,11 +13,13 @@ set incsearch "show search results as you type
 set guicursor= "Set guicursor to block in neovim
 set ignorecase "Ignore case when searching
 set smartcase "Unless we explicitly use cases in search
+set linebreak "Wrap at word boundaries
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
+set noswapfile
 
 let mapleader=" "
 inoremap jk <ESC>
@@ -457,7 +459,33 @@ cmp.setup.cmdline(":", {
 vim.keymap.set("n", "<leader>rn", function()
 	vim.lsp.buf.rename()
 end, { desc = "Rename with LSP" })
-vim.keymap.set("n", "<leader>w", "<Cmd>Neotree toggle<CR>")
+
+local is_neotree_focused = function()
+	-- Get our current buffer number
+	local bufnr = vim.api.nvim_get_current_buf and vim.api.nvim_get_current_buf() or vim.fn.bufnr()
+	-- Get all the available sources in neo-tree
+	for _, source in ipairs(require("neo-tree").config.sources) do
+		-- Get each sources state
+		local state = require("neo-tree.sources.manager").get_state(source)
+		-- Check if the source has a state, if the state has a buffer and if the buffer is our current buffer
+		if state and state.bufnr and state.bufnr == bufnr then
+			return true
+		end
+	end
+	return false
+end
+
+local focus_toggle_neotree = function()
+	if is_neotree_focused() then
+		vim.cmd(":wincmd w")
+	else
+		vim.cmd(":Neotree reveal")
+	end
+end
+vim.keymap.set("n", "<leader>w", function()
+	focus_toggle_neotree()
+end, { desc = "Neotree focus toggle" })
+vim.keymap.set("n", "<leader>n", ":Neotree toggle<CR>", { desc = "Neotree toggle" })
 
 -- Formatting
 local prettierd = function()
