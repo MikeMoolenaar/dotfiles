@@ -4,6 +4,7 @@ export FLYCTL_INSTALL="/home/mike/.fly"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH="$PATH:$HOME/.cargo/bin"
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
