@@ -257,9 +257,9 @@ bar {
 
 # Display stuff
 # exec_always xhost +SI:localuser:$USER
-exec_always --no-startup-id [[ -z $XRDP_SESSION ]] && xrandr --output DP-0 --mode 2560x1440 --rate 165 --preferred
-exec_always --no-startup-id [[ -z $XRDP_SESSION ]] && sleep 1 && xrandr --output HDMI-0 --left-of DP-0
-exec_always --no-startup-id [[ -z $XRDP_SESSION ]] && sleep 2 && xrandr --output DP-2 --right-of DP-0
+exec_always --no-startup-id [[ -z $XRDP_SESSION ]] && xrandr --output DP-2 --mode 2560x1440 --rate 165 --preferred
+exec_always --no-startup-id [[ -z $XRDP_SESSION ]] && sleep 1 && xrandr --output HDMI-0 --left-of DP-2
+exec_always --no-startup-id [[ -z $XRDP_SESSION ]] && sleep 2 && xrandr --output DP-0 --right-of DP-2
 
 exec --no-startup-id [[ -z $XRDP_SESSION ]] && nvidia-settings -l -a "AllowFlipping=0"
 exec_always --no-startup-id [[ -z $XRDP_SESSION ]] && picom -b --config ~/.config/picom/picom.conf
