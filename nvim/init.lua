@@ -569,6 +569,10 @@ vim.keymap.set("n", "[t", function()
 	todo_comments.jump_prev()
 end, { desc = "Previous TODO" })
 
+-- Insert empty line
+vim.keymap.set("n", "[<space>", ":pu! _<cr>:']+1<cr>", { desc = "Insert empty line above" })
+vim.keymap.set("n", "]<space>", ":pu _<cr>:'[-1<cr>", { desc = "Insert empty line below" })
+
 -- for htmx-lsp development
 --[[
 id = vim.lsp.start_client({

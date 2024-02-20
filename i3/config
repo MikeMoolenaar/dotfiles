@@ -212,7 +212,9 @@ mode $system_menu_mode {
   bindsym o exec i3-msg exit
   bindsym r exec systemctl reboot
   bindsym s exec systemctl poweroff
-  bindsym u exec systemctl suspend; mode "default"
+  # Must do "sudo chmod 777 /sys/bus/usb/devices/1-10/power/wakeup" first
+  # Prevent mouse dongle from waking system (see "lsusb -tvv") and suspend
+  bindsym u exec "echo 'disabled' >> '/sys/bus/usb/devices/1-10/power/wakeup'; systemctl suspend"; mode "default"
   bindsym Escape mode "default"
   bindsym Return mode "default"
 
