@@ -89,10 +89,13 @@ tv0() {
 # eval "$(github-copilot-cli alias -- "$0")"
 
 # Do not source on init because its quite slow
-alias nvm-init="source /usr/share/nvm/init-nvm.sh"
+alias nvminit="source /usr/share/nvm/init-nvm.sh"
 
 # Pipx places binaries in this folder
 export PATH="$PATH:/home/mike/.local/bin"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# Turso
+export PATH="/home/mike/.turso:$PATH"

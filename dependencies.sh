@@ -81,5 +81,11 @@ hunspell-en_gb
 # dnsmasq
 #=>
 # anki
+# => Japanese input stuff
+# fcitx5
+# fcitx5-mozc
+# fcitx5-gtk
+# fcitx5-configtool
+# =>
 # mkvalidator
 # yazi-bin
