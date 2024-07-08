@@ -5,6 +5,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"
+export ANDROID_HOME="$HOME/Android/Sdk"
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
@@ -44,7 +45,7 @@ alias parur="paru -R"
 alias jpwine="LANG='ja_JP.UTF8' wine"
 alias lzd="sudo lazydocker"
 alias esp="espanso edit"
-alias disk_usage="du -hc --max-depth=1"
+alias disk_usage="du -h | sort -hr | head -n 30"
 alias mount_storage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
 alias blb="bluetoothctl disconnect; bluetoothctl connect A0:D0:5B:A5:4E:74" # Soundbar
 alias blh="bluetoothctl disconnect; bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones
