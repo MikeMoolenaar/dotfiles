@@ -67,7 +67,7 @@ require("lazy").setup({
 		tag = "0.1.3",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-fzf-native.nvim",
+			-- "nvim-telescope/telescope-fzf-native.nvim",
 		},
 	},
 	"airblade/vim-rooter",
@@ -83,6 +83,7 @@ require("lazy").setup({
 	},
 	"ThePrimeagen/harpoon",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  "luckasRanarison/tree-sitter-hyprlang",
 	"github/copilot.vim",
 	{ "folke/todo-comments.nvim", opts = {} },
 
@@ -266,7 +267,7 @@ require("telescope").setup({
 		},
 	},
 })
-require("telescope").load_extension("fzf")
+-- require("telescope").load_extension("fzf")
 vim.keymap.set("n", "<leader>f", builtin.git_files, { desc = "Telescope git files" })
 vim.keymap.set("n", "<leader>v", builtin.find_files, { desc = "Telescope all files" })
 vim.keymap.set("n", "<leader>s", builtin.grep_string, { desc = "Telescope string search" })
@@ -297,6 +298,9 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 vim.treesitter.language.register("bash", "zsh")
+vim.filetype.add({
+  pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+})
 
 local lsp_zero = require("lsp-zero")
 lsp_zero.preset("recommended")
@@ -311,7 +315,6 @@ end)
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"cssls",
 		"html",
 		"lua_ls",
 		"rust_analyzer",

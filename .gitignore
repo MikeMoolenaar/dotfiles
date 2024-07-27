@@ -1,9 +1,12 @@
 *
 !*/
 alacritty/themes/
-!alacritty/alacritty.yml
+!alacritty/alacritty.toml
 !espanso/**
 !i3/**
+!hypr/**
+!waybar/**
+!wofi/style.css
 !picom/**
 !polybar/**
 !ranger/**

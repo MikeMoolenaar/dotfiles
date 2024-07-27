@@ -3,9 +3,14 @@ alacritty
 blueman
 bluez-utils # For bluetoothctl
 btop
-rofi
-rofi-calc
+waybar
+grimblast
+wl-clipboard
+zoxide
 # cloudflared
+fzf
+ripgrep
+fd
 copyq
 flameshot
 dotnet-sdk
@@ -45,7 +50,7 @@ playerctl
 polybar
 # qbittorrent
 ranger
-ueberzug # Enable image preview in ranger
+ueberzugpp # Enable image preview in ranger
 spotify
 mpv
 # wireguard-tools # Required for VPN's

@@ -14,7 +14,7 @@ if ! builtin type -p 'paru' >/dev/null 2>&1; then
 fi
 
 rm -rf ~/.config
-git clone git@github.com:MikeMoolenaar/dotfiles.git ~/.config
+git clone https://github.com/MikeMoolenaar/dotfiles.git ~/.config
 
 # Setup dependencies
 vim ~/.config/dependencies.sh
@@ -69,5 +69,9 @@ git config --global init.defaultBranch main
 git config --global pull.rebase false
 git config --global user.email "mmoolenaar9@gmail.com"
 git config --global user.name "MikeMoolenaar"
+
+# Install NodeJS
+source /usr/share/nvm/init-nvm.sh
+nvm install node
 
 echo -e "\n\nAll done!Don't forget to update the xrandr lines in '.config/i3/config' and Polybar settings for the main monitor, then reboot."
