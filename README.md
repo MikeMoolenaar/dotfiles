@@ -1,6 +1,13 @@
 # dotfiles
 My personal Arch Linux dotfiles with installation script.
 
+- **Window system** Wayland
+- **Compsitor** Hyprland
+- **Terminal** Alacritty
+- **Shell** Zsh (with Oh My Zsh)
+- **File manager** Ranger
+- **Text editor** Neovim
+
 ## Installation
 
 ### 1 - Install Arch
