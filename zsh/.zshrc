@@ -77,6 +77,14 @@ tv1() {
   # Enable flipping to prevent tearing
   nvidia-settings -l -a "AllowFlipping=1"
   xrandr --output HDMI-1 --mode 1920x1080 --rate 60 --above DP-2
+
+  s="$(nvidia-settings -q CurrentMetaMode -t)"
+
+  if [[ "${s}" != "" ]]; then
+    s="${s#*" :: "}"
+    nvidia-settings -a CurrentMetaMode="${s//\}/, ForceCompositionPipeline=On\}}"
+  fi
+
   echo "TV connected"
 }
 
