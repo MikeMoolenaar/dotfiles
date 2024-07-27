@@ -1,19 +1,21 @@
 # dotfiles
-My personal Arch Linux dotfiles with an install script.
+My personal Arch Linux dotfiles with installation script.
 
 ## Installation
 
 ### 1 - Install Arch
-Install using `archinstall` and choose the desktop profile with i3-wm. Select the "en_US.UTF-8" and "nl_NL.UTF-8" locales. 
-Also make sure you don't create a seperate partition for /home (this may lead to storage problems with many pacman packages and docker images).
+Install using `archinstall`:
+- Choose the desktop profile with `hyprland`
+- Select the "en_US.UTF-8" and "nl_NL.UTF-8" locales
+- Make sure you don't create a separate partition for /home (this may lead to storage problems with many pacman packages and docker images).
 
 ### 2 - Setup hyprland
 Force gdm to list wayland sessions (not sure if both are needed)
 ```
 ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
-echo "MUTTER_DEBUG_KMS_THREAD_TYPE=user" >> /etc//etc/environment
+echo "MUTTER_DEBUG_KMS_THREAD_TYPE=user" >> /etc/environment
 ```
-For nvidia, make sure [the kenrel is configured correctly](https://wiki.hyprland.org/Nvidia/#drm-kernel-mode-setting)
+For nvidia, make sure [the kernel is configured correctly](https://wiki.hyprland.org/Nvidia/#drm-kernel-mode-setting)
 
 ### 3 - Execute the install script
 (optional) update pacman config with `sudo vim /etc/pacman.conf`:

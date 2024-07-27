@@ -74,4 +74,4 @@ git config --global user.name "MikeMoolenaar"
 source /usr/share/nvm/init-nvm.sh
 nvm install node
 
-echo -e "\n\nAll done!Don't forget to update the xrandr lines in '.config/i3/config' and Polybar settings for the main monitor, then reboot."
+echo -e "\n\nAll done! Don't forget to update the monitor lines in '.config/hypr/hyprland.conf' and Waybar settings for the main monitor, then reboot."

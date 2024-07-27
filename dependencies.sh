@@ -1,5 +1,6 @@
 #=> All dependencies need to be in the base Arch repo or AUR
 alacritty
+nvim
 blueman
 bluez-utils # For bluetoothctl
 btop
