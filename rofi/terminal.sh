@@ -10,8 +10,6 @@ urlencode() {
     }'
 }
 
-
-
 d() { firefox --new-tab "https://duckduckgo.com/?q=$(urlencode $@)" }
 yt() { firefox --new-tab "https://www.youtube.com/results?search_query=$(urlencode $@)" }
 ggm() { firefox --new-tab "https://www.google.com/maps/search/$(urlencode $@)" }
