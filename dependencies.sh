@@ -1,6 +1,5 @@
 #=> All dependencies need to be in the base Arch repo or AUR
 alacritty
-nvim
 blueman
 bluez-utils # For bluetoothctl
 btop
@@ -20,13 +19,15 @@ aspnet-runtime
 # aspnet-runtime-preview-bin os-prober
 dunst
 jq
-espanso-git
+espanso-wayland
+rofi-wayland
+aur/rofi-calc-git # Works with rofi-wayland
 feh
 firefox
 gst-plugin-pipewire
 highlight
 htop
-gvim # Contains clipboard modules
+gvim # nvim with clipboard modules
 vim-plug
 neovim
 ripgrep
@@ -66,6 +67,7 @@ man-db
 python-pandas
 python-pipx # Handy for CLI's written in python
 # remmina
+# gnome-keyring
 # freerdp
 docker
 docker-compose
