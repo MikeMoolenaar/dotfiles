@@ -12,6 +12,7 @@ fzf
 ripgrep
 fd
 copyq
+ydotool
 flameshot
 dotnet-sdk
 aspnet-runtime
@@ -67,7 +68,7 @@ man-db
 python-pandas
 python-pipx # Handy for CLI's written in python
 # remmina
-# gnome-keyring
+gnome-keyring
 # freerdp
 docker
 docker-compose
