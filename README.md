@@ -1,6 +1,13 @@
 # dotfiles
 My personal Arch Linux dotfiles with installation script.
 
+- **Window system** Wayland
+- **Compsitor** Hyprland
+- **Terminal** Alacritty
+- **Shell** Zsh (with Oh My Zsh)
+- **File manager** Ranger
+- **Text editor** Neovim
+
 ## Installation
 
 ### 1 - Install Arch
@@ -15,7 +22,22 @@ Force gdm to list wayland sessions (not sure if both are needed)
 ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 echo "MUTTER_DEBUG_KMS_THREAD_TYPE=user" >> /etc/environment
 ```
-For nvidia, make sure [the kernel is configured correctly](https://wiki.hyprland.org/Nvidia/#drm-kernel-mode-setting)
+
+#### 2.1 - Nvidia steps
+Make sure [the kernel is configured correctly](https://wiki.hyprland.org/Nvidia/#drm-kernel-mode-setting).
+
+Steps to make suspend work:
+```sh
+sudo systemctl enable nvidia-suspend.service
+sudo systemctl enable nvidia-hibernate.service
+sudo systemctl enable nvidia-resume.service
+
+sudo vim /etc/modprobe.d/nvidia.conf
+# Add new line: `options nvidia NVreg_PreserveVideoMemoryAllocations=1`
+
+sudo reboot now
+```
+
 
 ### 3 - Execute the install script
 (optional) update pacman config with `sudo vim /etc/pacman.conf`:
