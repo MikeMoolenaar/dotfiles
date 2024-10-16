@@ -19,7 +19,7 @@ nvim/lazy-lock.json
 !mcomix/**
 !rofi/**
 !firefox/**
-!idasen-controller/**
+!linak-controller/**
 !copyq/copyq.conf
 !flameshot/flameshot.ini
 !mpv/**

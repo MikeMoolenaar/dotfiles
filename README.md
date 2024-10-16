@@ -58,3 +58,4 @@ bash install.sh
 ln -s ~/.config/firefox/user.js ~/.mozilla/firefox/*default-release
 ```
 - [Setup Github authentication](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key), the connection can be tested using `ssh -T git@github.com`
+- When multiple browsers are installed, setup the default one: `xdg-settings set default-web-browser firefox.desktop`

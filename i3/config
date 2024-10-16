@@ -95,7 +95,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec alacritty
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+c kill
 
 # Screenshot tool
 bindsym Print exec flameshot gui
@@ -109,7 +109,7 @@ bindsym Ctrl+Shift+e exec ~/.config/scripts/ocr-jp.sh -t
 
 # start rofi
 bindsym $mod+d exec --no-startup-id "rofi -show combi -combi-modes 'window,drun' -modes combi"
-bindsym $mod+c exec --no-startup-id LC_MONETARY=nl_NL.UTF-8 rofi -show calc -modi calc -no-show-match -no-sort  -kb-accept-custom 'Control_L+c' -calc-command "echo -n '{result}' | xclip -selection clipboard"
+# bindsym $mod+c exec --no-startup-id LC_MONETARY=nl_NL.UTF-8 rofi -show calc -modi calc -no-show-match -no-sort  -kb-accept-custom 'Control_L+c' -calc-command "echo -n '{result}' | xclip -selection clipboard"
 bindsym $mod+g exec ~/.config/scripts/rofi-terminal.sh
 
 # change focus

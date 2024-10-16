@@ -1,7 +1,7 @@
-mac_address: C3:ED:90:B1:C5:61
+mac_address: "C3:ED:90:B1:C5:61"
 scan_timeout: 5
 connection_timeout: 10
-movement_timeout: 30
+movement_timeout: 10
 adapter_name: hci0
 server_address: "127.0.0.1"
 server_port: 9123

@@ -8,6 +8,8 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export UPDATE_ZSH_DAYS=45
+export DISABLE_UPDATE_PROMPT=true # Always update oh-my-zsh
 
 source .zshrc-personal 2> /dev/null
 
@@ -51,8 +53,8 @@ alias blb="bluetoothctl disconnect; bluetoothctl connect A0:D0:5B:A5:4E:74" # So
 alias blh="bluetoothctl disconnect; bluetoothctl connect 38:18:4C:AE:8D:E1" # Headphones
 alias bld="bluetoothctl connect C3:ED:90:B1:C5:61" # Desk
 alias docker="sudo docker"
-alias sit="bld && idasen-controller --move-to sit" # Requires "pipx install idasen-controller"
-alias stand="bld && idasen-controller --move-to stand"
+alias sit="bld && linak-controller --move-to sit" # Requires "pipx install linak-controller"
+alias stand="bld && linak-controller --move-to stand"
 alias curltime="curl -Ls --output /dev/null -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
 alias windows="sudo grub-reboot 'Windows 10 (on /dev/sdb1)' && systemctl reboot"
 zv() { z $1 && nvim .; }
