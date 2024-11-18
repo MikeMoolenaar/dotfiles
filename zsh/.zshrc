@@ -6,6 +6,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"
 export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:/home/mike/.dotnet/tools"
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export UPDATE_ZSH_DAYS=45
