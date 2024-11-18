@@ -113,7 +113,25 @@ require("lazy").setup({
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
-	{ "simrat39/rust-tools.nvim" },
+  {
+      'mrcjkb/rustaceanvim',
+      version = '^5',
+      init = function()
+          -- Configure rustaceanvim here
+          vim.g.rustaceanvim = {
+            server = {
+                cmd = function()
+                  local ra_bin = vim.fn.expand("$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer")
+                  return { ra_bin  }
+                end,
+                on_attach = function(client, bufnr)
+                  -- you can also put keymaps in here
+                end,
+              },
+            }
+          end,
+    lazy = false
+  },
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-cmdline" },
@@ -317,11 +335,10 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"html",
 		"lua_ls",
-		"rust_analyzer",
 		"tsserver",
+		"htmx",
 		-- "stylua",
 		-- "gopls",
-		-- "htmx",
 	},
 	handlers = {
 		lsp_zero.default_setup,
@@ -354,28 +371,6 @@ local function map_illuminate(key, dir, buffer)
 		illuminate["goto_" .. dir .. "_reference"](false)
 	end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
 end
-
-local rt = require("rust-tools")
-rt.setup({
-	tools = {
-		inlay_hints = { auto = false },
-	},
-	server = {
-		on_attach = function(_, bufnr)
-			-- Code action groups
-			vim.keymap.set(
-				"n",
-				"<Leader>r",
-				rt.code_action_group.code_action_group,
-				{ buffer = bufnr, desc = "Rust actions" }
-			)
-
-			-- Must define here becuase rust-tools overrides the default
-			map_illuminate("]]", "next")
-			map_illuminate("[[", "prev")
-		end,
-	},
-})
 
 local kind_icons = {
 	Text = "",
