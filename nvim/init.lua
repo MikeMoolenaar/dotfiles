@@ -25,11 +25,8 @@ let mapleader=" "
 inoremap jk <ESC>
 nnoremap <C-c> <ESC>
 
-" Easy yank to system clipboard
-nmap Y "+y
-vmap Y "+y
-
-autocmd BufRead,BufNewFile *.jsm set filetype=javascript
+" Use system clipboard
+set clipboard=unnamedplus
 
 " Let Telescope find in the project dir instead of /
 let g:rooter_patterns = ['.git', '.svn', '!node_modules']
