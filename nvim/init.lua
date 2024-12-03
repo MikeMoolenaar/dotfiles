@@ -25,6 +25,12 @@ let mapleader=" "
 inoremap jk <ESC>
 nnoremap <C-c> <ESC>
 
+" Some remaps to center current line in vertical center
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " Use system clipboard
 set clipboard=unnamedplus
 
@@ -100,8 +106,7 @@ require("lazy").setup({
 			vim.o.timeoutlen = 500
 		end,
 		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
+      delay = 400
 		},
 	},
 
@@ -175,7 +180,6 @@ require("lazy").setup({
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {
-			indent = { char = "┇" },
 		},
 	},
 
@@ -193,7 +197,7 @@ require("lazy").setup({
 			},
 			on_attach = function(bufnr)
 				local gs = require("gitsigns")
-				-- Cusom keybindings
+				-- Custom keybindings
 				vim.keymap.set("n", "<leader>hp", gs.preview_hunk, { buffer = bufnr, desc = "Preview git hunk" })
 				vim.keymap.set("n", "<leader>hr", gs.reset_hunk, { buffer = bufnr, desc = "Reset git hunk" })
 				vim.keymap.set("n", "]g", gs.next_hunk, { buffer = bufnr, desc = "Next git hunk" })
@@ -524,13 +528,10 @@ augroup END
 -- Diagonstics
 vim.diagnostic.config({
 	virtual_text = {
-		format = function(diagnostic)
-			local lines = vim.split(diagnostic.message, "\n")
-			return lines[1]
-		end,
-		virt_text_pos = "right_align", -- Not supported yet...
 		suffix = " ",
+    source = "if_many",
 	},
+  severity_sort = true,
 })
 
 -- Custom keybindings for diagnostics
