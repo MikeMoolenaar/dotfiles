@@ -1,6 +1,7 @@
 -- System dependencies:
 -- - ripgrep (telescope live grep)
 -- - fzf (improve fuzzy search in telescope)
+-- - stylua (via Cargo)
 vim.cmd([[
 set number
 set relativenumber
@@ -43,21 +44,25 @@ nnoremap <expr> sp ':Telescope grep_string cwd='.FindRootDirectory().'/<cr>'
 nnoremap <silent> <Leader>rc :source $MYVIMRC<cr>
 ]])
 
--- z= to see suggestions, zg to add to dictionary
 -- Set up automatic spell checking
+-- `z=` to see suggestions, `zg` to add to dictionary
 vim.opt.spelllang = "en"
 vim.opt.spell = true
 
+-- Setup LazyVim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -86,7 +91,7 @@ require("lazy").setup({
 	},
 	"ThePrimeagen/harpoon",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  "luckasRanarison/tree-sitter-hyprlang",
+	"luckasRanarison/tree-sitter-hyprlang",
 	"github/copilot.vim",
 	{ "folke/todo-comments.nvim", opts = {} },
 
@@ -106,7 +111,7 @@ require("lazy").setup({
 			vim.o.timeoutlen = 500
 		end,
 		opts = {
-      delay = 400
+			delay = 400,
 		},
 	},
 
@@ -115,25 +120,26 @@ require("lazy").setup({
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
-  {
-      'mrcjkb/rustaceanvim',
-      version = '^5',
-      init = function()
-          -- Configure rustaceanvim here
-          vim.g.rustaceanvim = {
-            server = {
-                cmd = function()
-                  local ra_bin = vim.fn.expand("$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer")
-                  return { ra_bin  }
-                end,
-                on_attach = function(client, bufnr)
-                  -- you can also put keymaps in here
-                end,
-              },
-            }
-          end,
-    lazy = false
-  },
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5",
+		init = function()
+			-- Configure rustaceanvim here
+			vim.g.rustaceanvim = {
+				server = {
+					cmd = function()
+						local ra_bin =
+							vim.fn.expand("$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer")
+						return { ra_bin }
+					end,
+					on_attach = function(client, bufnr)
+						-- you can also put keymaps in here
+					end,
+				},
+			}
+		end,
+		lazy = false,
+	},
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-cmdline" },
@@ -179,8 +185,7 @@ require("lazy").setup({
 		-- :help indent_blankline.txt
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {
-		},
+		opts = {},
 	},
 
 	{
@@ -318,7 +323,7 @@ require("nvim-treesitter.configs").setup({
 })
 vim.treesitter.language.register("bash", "zsh")
 vim.filetype.add({
-  pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+	pattern = { [".*/hyprland%.conf"] = "hyprlang" },
 })
 
 local lsp_zero = require("lsp-zero")
@@ -338,8 +343,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"tsserver",
 		"htmx",
-		-- "stylua",
-		-- "gopls",
+		-- "stylua", -- Must be installed via Cargo
 	},
 	handlers = {
 		lsp_zero.default_setup,
@@ -486,15 +490,6 @@ vim.keymap.set("n", "<leader>w", function()
 end, { desc = "Neotree focus toggle" })
 vim.keymap.set("n", "<leader>n", ":Neotree toggle<CR>", { desc = "Neotree toggle" })
 
--- Formatting
-local prettierd = function()
-	return {
-		exe = "prettier",
-		args = { vim.api.nvim_buf_get_name(0) },
-		stdin = true,
-	}
-end
-
 require("formatter").setup({
 	logging = true,
 	log_level = vim.log.levels.WARN,
@@ -525,13 +520,22 @@ augroup FormatAutogroup
 augroup END
 ]])
 
+-- Highlight when yanking
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank({ timeout = 200 })
+	end,
+})
+
 -- Diagonstics
 vim.diagnostic.config({
 	virtual_text = {
 		suffix = " ",
-    source = "if_many",
+		source = "if_many",
 	},
-  severity_sort = true,
+	severity_sort = true,
 })
 
 -- Custom keybindings for diagnostics
