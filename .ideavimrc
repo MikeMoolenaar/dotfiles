@@ -1,0 +1,57 @@
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+" which key
+set which-key
+set notimeout
+set timeoutlen=500
+
+" General options
+let mapleader=" "
+set number
+set relativenumber
+set cursorline
+set scrolloff=5
+set showmode "Like, VISUAL or INSERT
+set mouse=a "Can use mouse in [a]ll modes
+set hlsearch "Highlight all search result
+set incsearch "show search results as you type
+set guicursor= "Set guicursor to block in neovim
+set ignorecase "Ignore case when searching
+set smartcase "Unless we explicitly use cases in search
+set linebreak "Wrap at word boundaries
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set noswapfile
+
+inoremap jk <ESC>
+nnoremap <C-c> <ESC>
+
+" Some remaps to center current line in vertical center
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+
+" Insert empty line above and below
+nnoremap [<space> O<Esc>j
+nnoremap ]<space> o<Esc>k
+
+" Use system clipboard
+set clipboard=unnamedplus
+
+" Idea specific remaps
+" List of all actions: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+map <leader>r <Action>(RenameElement)
+map <leader>f <Action>(GotoFile)
+map <leader>g <Action>(FindInPath)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map ]e <Action>(GotoNextError)
+map [e <Action>(GotoPreviousError)
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
