@@ -144,6 +144,7 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-cmdline" },
 	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-calc" },
 	{ "hrsh7th/nvim-cmp" },
 	{ "L3MON4D3/LuaSnip" },
 	{ "mhartington/formatter.nvim" },
@@ -220,6 +221,7 @@ require("catppuccin").setup({
 	transparent_background = true,
 })
 vim.cmd("colorscheme catppuccin")
+
 
 -- Custom comment.nvim config
 local ft = require("Comment.ft")
@@ -405,58 +407,133 @@ local kind_icons = {
 	TypeParameter = "󰅲",
 }
 
+local lspkind_comparator = function(conf)
+	local lsp_types = require("cmp.types").lsp
+	return function(entry1, entry2)
+		if entry1.source.name ~= "nvim_lsp" then
+			if entry2.source.name == "nvim_lsp" then
+				return false
+			else
+				return nil
+			end
+		end
+		local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+		local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+		if kind1 == "Variable" and entry1:get_completion_item().label:match("%w*=") then
+			kind1 = "Parameter"
+		end
+		if kind2 == "Variable" and entry2:get_completion_item().label:match("%w*=") then
+			kind2 = "Parameter"
+		end
+
+		local priority1 = conf.kind_priority[kind1] or 0
+		local priority2 = conf.kind_priority[kind2] or 0
+		if priority1 == priority2 then
+			return nil
+		end
+		return priority2 < priority1
+	end
+end
+
+local label_comparator = function(entry1, entry2)
+	return entry1.completion_item.label < entry2.completion_item.label
+end
+
 cmp.setup({
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 	-- Preselect first item
 	preselect = "item",
 	completion = {
 		completeopt = "menu,menuone,noinsert",
 	},
 	sources = {
-		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
+		{ name = "path" },
 		{ name = "calc" },
 	},
-	formatting = {
-		format = function(entry, vim_item)
-			-- Kind icons
-			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-			-- Source
-			vim_item.menu = ({
-				buffer = "[Buffer]",
-				nvim_lsp = "",
-				luasnip = "[LuaSnip]",
-				nvim_lua = "[Lua]",
-				latex_symbols = "[LaTeX]",
-			})[entry.source.name]
-			return vim_item
-		end,
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-		["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-		["<Tab>"] = cmp.mapping.confirm({ select = true }),
-		["<C-l>"] = cmp.mapping.complete(),
-	}),
+	sorting = {
+    comparators = {
+      lspkind_comparator({
+        kind_priority = {
+          Parameter = 14,
+          Variable = 12,
+          Field = 11,
+          Property = 11,
+          Constant = 10,
+          Enum = 10,
+          EnumMember = 10,
+          Event = 10,
+          Function = 10,
+          Method = 10,
+          Operator = 10,
+          Reference = 10,
+          Struct = 10,
+          File = 8,
+          Folder = 8,
+          Class = 5,
+          Color = 5,
+          Module = 5,
+          Keyword = 2,
+          Constructor = 1,
+          Interface = 1,
+          Snippet = 0,
+          Text = 1,
+          TypeParameter = 1,
+          Unit = 1,
+          Value = 1,
+        },
+      }),
+      label_comparator
+    },
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      -- This concatonates the icons with the name of the item kind
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        calc = "[Calc]",
+        nvim_lsp = "",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+    ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+    ["<tab>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-e>"] = cmp.mapping.abort(),
+  }),
 })
 cmp.setup.cmdline("/", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = "buffer" },
-	},
+  mapping = cmp.mapping.preset.cmdline({
+    ["<tab>"] = { c = cmp.mapping.confirm({ select = true }) },
+  }),
+  sources = {
+    { name = "buffer" },
+  },
 })
 cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{
-			name = "cmdline",
-			option = {
-				ignore_cmds = { "Man", "!" },
-			},
-		},
-	}),
+  mapping = cmp.mapping.preset.cmdline({
+    ["<tab>"] = { c = cmp.mapping.confirm({ select = true }) },
+  }),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    {
+      name = "cmdline",
+      option = {
+        ignore_cmds = { "Man", "!" },
+      },
+    },
+  }),
 })
 
 vim.keymap.set("n", "<leader>rn", function()
