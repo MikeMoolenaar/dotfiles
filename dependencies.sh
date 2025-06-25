@@ -77,7 +77,7 @@ lazydocker
 whois
 xsel
 # imhex-bin # hex editor
-# wine-stable
+# wine
 # wine-mono
 #=> Libreoffice
 libreoffice-fresh

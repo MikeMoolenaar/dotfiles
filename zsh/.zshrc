@@ -61,6 +61,7 @@ alias curltime="curl -Ls --output /dev/null -w '\n\nTotal: %{time_total}s Code: 
 alias windows="sudo grub-reboot 'Windows 10 (on /dev/sdb1)' && systemctl reboot"
 zv() { z $1 && nvim .; }
 alias ziv="zi && nvim ."
+alias cs=csharprepl
 
 
 mkcdir() {

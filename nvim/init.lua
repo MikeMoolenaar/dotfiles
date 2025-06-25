@@ -135,6 +135,13 @@ require("lazy").setup({
 					on_attach = function(client, bufnr)
 						-- you can also put keymaps in here
 					end,
+					default_settings = {
+						["rust-analyzer"] = {
+							check = {
+								allTargets = false,
+							},
+						},
+					},
 				},
 			}
 		end,
@@ -221,7 +228,6 @@ require("catppuccin").setup({
 	transparent_background = true,
 })
 vim.cmd("colorscheme catppuccin")
-
 
 -- Custom comment.nvim config
 local ft = require("Comment.ft")
@@ -371,14 +377,6 @@ lspconfig.tsserver.setup({
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
--- Next/prev reference
-local illuminate = require("illuminate")
-local function map_illuminate(key, dir, buffer)
-	vim.keymap.set("n", key, function()
-		illuminate["goto_" .. dir .. "_reference"](false)
-	end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
-end
-
 local kind_icons = {
 	Text = "",
 	Method = "󰆧",
@@ -440,10 +438,10 @@ local label_comparator = function(entry1, entry2)
 end
 
 cmp.setup({
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 	-- Preselect first item
 	preselect = "item",
 	completion = {
@@ -456,84 +454,84 @@ cmp.setup({
 		{ name = "calc" },
 	},
 	sorting = {
-    comparators = {
-      lspkind_comparator({
-        kind_priority = {
-          Parameter = 14,
-          Variable = 12,
-          Field = 11,
-          Property = 11,
-          Constant = 10,
-          Enum = 10,
-          EnumMember = 10,
-          Event = 10,
-          Function = 10,
-          Method = 10,
-          Operator = 10,
-          Reference = 10,
-          Struct = 10,
-          File = 8,
-          Folder = 8,
-          Class = 5,
-          Color = 5,
-          Module = 5,
-          Keyword = 2,
-          Constructor = 1,
-          Interface = 1,
-          Snippet = 0,
-          Text = 1,
-          TypeParameter = 1,
-          Unit = 1,
-          Value = 1,
-        },
-      }),
-      label_comparator
-    },
-  },
-  formatting = {
-    format = function(entry, vim_item)
-      -- This concatonates the icons with the name of the item kind
-      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
-      vim_item.menu = ({
-        buffer = "[Buffer]",
-        calc = "[Calc]",
-        nvim_lsp = "",
-        luasnip = "[LuaSnip]",
-        nvim_lua = "[Lua]",
-        latex_symbols = "[LaTeX]",
-      })[entry.source.name]
-      return vim_item
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-    ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-    ["<tab>"] = cmp.mapping.confirm({ select = true }),
-    ["<C-e>"] = cmp.mapping.abort(),
-  }),
+		comparators = {
+			lspkind_comparator({
+				kind_priority = {
+					Parameter = 14,
+					Variable = 12,
+					Field = 11,
+					Property = 11,
+					Constant = 10,
+					Enum = 10,
+					EnumMember = 10,
+					Event = 10,
+					Function = 10,
+					Method = 10,
+					Operator = 10,
+					Reference = 10,
+					Struct = 10,
+					File = 8,
+					Folder = 8,
+					Class = 5,
+					Color = 5,
+					Module = 5,
+					Keyword = 2,
+					Constructor = 1,
+					Interface = 1,
+					Snippet = 0,
+					Text = 1,
+					TypeParameter = 1,
+					Unit = 1,
+					Value = 1,
+				},
+			}),
+			label_comparator,
+		},
+	},
+	formatting = {
+		format = function(entry, vim_item)
+			-- This concatonates the icons with the name of the item kind
+			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+			vim_item.menu = ({
+				buffer = "[Buffer]",
+				calc = "[Calc]",
+				nvim_lsp = "",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				latex_symbols = "[LaTeX]",
+			})[entry.source.name]
+			return vim_item
+		end,
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+		["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+		["<tab>"] = cmp.mapping.confirm({ select = true }),
+		["<C-e>"] = cmp.mapping.abort(),
+	}),
 })
 cmp.setup.cmdline("/", {
-  mapping = cmp.mapping.preset.cmdline({
-    ["<tab>"] = { c = cmp.mapping.confirm({ select = true }) },
-  }),
-  sources = {
-    { name = "buffer" },
-  },
+	mapping = cmp.mapping.preset.cmdline({
+		["<tab>"] = { c = cmp.mapping.confirm({ select = true }) },
+	}),
+	sources = {
+		{ name = "buffer" },
+	},
 })
 cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline({
-    ["<tab>"] = { c = cmp.mapping.confirm({ select = true }) },
-  }),
-  sources = cmp.config.sources({
-    { name = "path" },
-  }, {
-    {
-      name = "cmdline",
-      option = {
-        ignore_cmds = { "Man", "!" },
-      },
-    },
-  }),
+	mapping = cmp.mapping.preset.cmdline({
+		["<tab>"] = { c = cmp.mapping.confirm({ select = true }) },
+	}),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
+	}),
 })
 
 vim.keymap.set("n", "<leader>rn", function()
