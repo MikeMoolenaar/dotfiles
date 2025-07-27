@@ -4,7 +4,7 @@ blueman
 bluez-utils # For bluetoothctl
 btop
 waybar
-grimblast
+grimblast # Screenshot utility for Hyperland
 wl-clipboard
 zoxide
 # cloudflared
@@ -17,7 +17,7 @@ flameshot
 dotnet-sdk
 aspnet-runtime
 # dotnet-sdk-preview-bin
-# aspnet-runtime-preview-bin os-prober
+# aspnet-runtime-preview-bin
 dunst
 jq
 espanso-wayland
@@ -40,7 +40,7 @@ xorg-xrandr
 imagemagick
 jetbrains-toolbox
 # mcomix
-neofetch
+fastfetch
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
