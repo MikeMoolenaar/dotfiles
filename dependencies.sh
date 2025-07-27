@@ -14,6 +14,7 @@ fd
 copyq
 ydotool
 flameshot
+hyprpaper
 dotnet-sdk
 aspnet-runtime
 # dotnet-sdk-preview-bin
