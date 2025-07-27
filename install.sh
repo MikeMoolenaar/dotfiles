@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 sudo pacman -Syu
 
 # Install base-devel and paru
