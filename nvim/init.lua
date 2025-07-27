@@ -347,10 +347,10 @@ end)
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"html",
 		"lua_ls",
-		"tsserver",
-		"htmx",
+		-- "html",
+		-- "tsserver",
+		-- "htmx",
 		-- "stylua", -- Must be installed via Cargo
 	},
 	handlers = {
