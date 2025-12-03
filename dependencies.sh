@@ -70,8 +70,8 @@ man-db
 python-pandas
 python-pipx # Handy for CLI's written in python
 # remmina
-gnome-keyring
 # freerdp
+gnome-keyring
 docker
 docker-compose
 docker-buildx
