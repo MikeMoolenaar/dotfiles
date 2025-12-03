@@ -310,7 +310,7 @@ vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope search cur
 -- Treesitter for syntax highlighting + parsing syntax stuff (idk actually)
 require("nvim-treesitter.configs").setup({
 	-- A list of parser names, or "all"
-	ensure_installed = { "c", "lua", "vim", "rust", "javascript", "typescript", "bash", "html", "css", "dockerfile" },
+	ensure_installed = { "c", "lua", "vim", "rust", "javascript", "typescript", "bash", "css", "dockerfile" },
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
