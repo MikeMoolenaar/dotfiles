@@ -23,8 +23,7 @@ aspnet-runtime
 dunst
 jq
 espanso-wayland
-rofi-wayland
-aur/rofi-calc-git # Works with rofi-wayland
+vicinae-bin
 feh
 firefox
 gst-plugin-pipewire

@@ -17,7 +17,6 @@ nvim/lazy-lock.json
 !feh/**
 !dunst/**
 !mcomix/**
-!rofi/**
 !firefox/**
 !linak-controller/**
 !copyq/copyq.conf
@@ -31,3 +30,4 @@ scripts/*.png
 !/dependencies.sh
 !/starship.toml
 !/.gitignore
+!/vicinae/**
