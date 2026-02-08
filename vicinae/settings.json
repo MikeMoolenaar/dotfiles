@@ -20,6 +20,9 @@
          "name": "catppuccin-mocha"
       }
    },
+   "launcher_window": {
+      "opacity": 0.95
+   },
    "providers": {
       "applications": {
          "preferences": {
@@ -28,6 +31,9 @@
                "/usr/share/applications"
             ]
          }
+      },
+      "raycast-compat": {
+         "enabled": false
       }
    }
 }
