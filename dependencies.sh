@@ -12,8 +12,6 @@ fzf
 ripgrep
 fd
 copyq
-ydotool
-flameshot
 hyprpaper
 hyprlock
 dotnet-sdk
