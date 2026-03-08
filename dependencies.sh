@@ -20,15 +20,12 @@ aspnet-runtime
 # aspnet-runtime-preview-bin
 dunst
 jq
-espanso-wayland
 vicinae-bin
 feh
 firefox
 gst-plugin-pipewire
 highlight
 htop
-gvim # nvim with clipboard modules
-vim-plug
 neovim
 ripgrep
 fzf

@@ -2,7 +2,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 export FLYCTL_INSTALL="/home/mike/.fly"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"
 export ANDROID_HOME="$HOME/Android/Sdk"
