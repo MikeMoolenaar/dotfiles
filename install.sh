@@ -16,7 +16,7 @@ if ! builtin type -p 'paru' >/dev/null 2>&1; then
 fi
 
 rm -rf ~/.config
-git clone https://github.com/MikeMoolenaar/dotfiles.git ~/.config
+git clone git@github.com:MikeMoolenaar/dotfiles.git ~/.config
 
 # Setup dependencies
 vim ~/.config/dependencies.sh
