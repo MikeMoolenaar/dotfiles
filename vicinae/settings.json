@@ -20,6 +20,9 @@
          "name": "catppuccin-mocha"
       }
    },
+   "telemetry": {
+      "system_info": false
+   },
    "launcher_window": {
       "opacity": 0.95
    },
