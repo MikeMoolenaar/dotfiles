@@ -27,6 +27,7 @@ gst-plugin-pipewire
 highlight
 htop
 neovim
+tree-sitter-cli
 ripgrep
 fzf
 unzip

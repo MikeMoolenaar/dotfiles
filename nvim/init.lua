@@ -90,8 +90,30 @@ require("lazy").setup({
 		},
 	},
 	"ThePrimeagen/harpoon",
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"luckasRanarison/tree-sitter-hyprlang",
+	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "main",  build = ":TSUpdate",
+
+  config = function() 
+      require('nvim-treesitter').setup {
+        install_dir = vim.fn.stdpath('data') .. '/site'
+      }
+      require('nvim-treesitter').install { "c", "lua", "vim",  "javascript", "typescript", "bash", "css", "dockerfile", "hyprlang" }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { "c", "lua", "vim",  "javascript", "typescript", "bash", "css", "dockerfile", "hyprlang" },
+        callback = function()
+          vim.treesitter.start()
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          vim.treesitter.language.register("bash", "zsh")
+          vim.filetype.add({
+            pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+          })
+        end,
+      })
+
+  end
+
+},
 	"github/copilot.vim",
 	{ "folke/todo-comments.nvim", opts = {} },
 
@@ -308,31 +330,6 @@ vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope search cur
 -- vim.keymap.set("n", "<leader>h", builtin.help_tags, {})
 
 -- Treesitter for syntax highlighting + parsing syntax stuff (idk actually)
-require("nvim-treesitter.configs").setup({
-	-- A list of parser names, or "all"
-	ensure_installed = { "c", "lua", "vim", "rust", "javascript", "typescript", "bash", "css", "dockerfile" },
-
-	-- Install parsers synchronously (only applied to `ensure_installed`)
-	sync_install = false,
-
-	-- Automatically install missing parsers when entering buffer
-	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-	auto_install = true,
-
-	highlight = {
-		enable = true,
-
-		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-		-- Using this option may slow down your editor, and you may see some duplicate highlights.
-		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = false,
-	},
-})
-vim.treesitter.language.register("bash", "zsh")
-vim.filetype.add({
-	pattern = { [".*/hyprland%.conf"] = "hyprlang" },
-})
 
 local lsp_zero = require("lsp-zero")
 lsp_zero.preset("recommended")
@@ -357,20 +354,9 @@ require("mason-lspconfig").setup({
 		lsp_zero.default_setup,
 		lua_ls = function()
 			local lua_opts = lsp_zero.nvim_lua_ls()
-			require("lspconfig").lua_ls.setup(lua_opts)
+			vim.lsp.config().lua_ls.setup(lua_opts)
 		end,
 	},
-})
-local lspconfig = require("lspconfig")
-lspconfig.htmx.setup({
-	filetypes = { "html", "htmldjango" },
-})
-
-lspconfig.html.setup({
-	filetypes = { "html", "htmldjango" },
-})
-lspconfig.tsserver.setup({
-	filetypes = { "typescript", "javascript" },
 })
 
 -- Autocomplete stuff
@@ -572,9 +558,9 @@ require("formatter").setup({
 
 		-- htmldjango = { prettierd },
 		-- html = { prettierd },
-		lua = {
-			require("formatter.filetypes.lua").stylua,
-		},
+		-- lua = {
+		-- 	require("formatter.filetypes.lua").stylua,
+		-- },
 		rust = {
 			require("formatter.filetypes.rust").rustfmt,
 		},
