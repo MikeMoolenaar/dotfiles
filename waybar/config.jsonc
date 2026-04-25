@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "output": "DP-2",
+//    "output": "DP-2",
     "position": "top",
     "mode": "dock",
     "exclusive": true,

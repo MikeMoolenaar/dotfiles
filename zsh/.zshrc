@@ -8,7 +8,8 @@ export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$PATH:/home/mike/.dotnet/tools"
 export MANPAGER='nvim +Man!'
 export EDITOR=/bin/nvim
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export GH_TELEMETRY=false
 export UPDATE_ZSH_DAYS=45
 export DISABLE_UPDATE_PROMPT=true # Always update oh-my-zsh
 
@@ -77,38 +78,12 @@ installed() {
   pacman -Qqett | sort
 }
 
-tv1() {
-  # Enable flipping to prevent tearing
-  nvidia-settings -l -a "AllowFlipping=1"
-  xrandr --output HDMI-1 --mode 1920x1080 --rate 60 --above DP-2
-
-  s="$(nvidia-settings -q CurrentMetaMode -t)"
-
-  if [[ "${s}" != "" ]]; then
-    s="${s#*" :: "}"
-    nvidia-settings -a CurrentMetaMode="${s//\}/, ForceCompositionPipeline=On\}}"
-  fi
-
-  echo "TV connected"
-}
-
-tv0() {
-  nvidia-settings -l -a "AllowFlipping=0"
-  xrandr --output HDMI-1 --off
-  echo "TV disconnected"
-}
-
 # Github copilot CLI
 # eval "$(github-copilot-cli alias -- "$0")"
 
 # Do not source on init because its quite slow
 alias nvminit="source /usr/share/nvm/init-nvm.sh"
 
-# Pipx places binaries in this folder
-export PATH="$PATH:/home/mike/.local/bin"
-
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
-# Turso
-export PATH="/home/mike/.turso:$PATH"
