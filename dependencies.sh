@@ -65,7 +65,7 @@ man-db
 python-pandas
 python-pipx # Handy for CLI's written in python
 # remmina
-# freerdp
+# libvncserver
 gnome-keyring
 docker
 docker-compose
