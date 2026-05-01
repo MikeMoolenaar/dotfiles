@@ -1,11 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export FLYCTL_INSTALL="/home/mike/.fly"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"
-export ANDROID_HOME="$HOME/Android/Sdk"
 export PATH="$PATH:/home/mike/.dotnet/tools"
+export ANDROID_HOME="$HOME/Android/Sdk"
 export MANPAGER='nvim +Man!'
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=true

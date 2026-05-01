@@ -35,6 +35,14 @@
             ]
          }
       },
+      "clipboard": {
+         "preferences": {
+            "encryption": false,
+            "eraseOnStartup": true,
+            "ignorePasswords": true,
+            "monitoring": true
+         }
+      },
       "raycast-compat": {
          "enabled": false
       }
