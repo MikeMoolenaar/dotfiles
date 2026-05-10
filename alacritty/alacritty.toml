@@ -19,3 +19,8 @@ import = [
   "~/.config/alacritty/themes/themes/midnight-haze.toml"
 ]
 
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
