@@ -1,31 +1,12 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:/home/mike/.dotnet/tools"
-export ANDROID_HOME="$HOME/Android/Sdk"
 export MANPAGER='nvim +Man!'
 export EDITOR=/bin/nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export GH_TELEMETRY=false
-export UPDATE_ZSH_DAYS=45
-export DISABLE_UPDATE_PROMPT=true # Always update oh-my-zsh
 
-source .zshrc-personal 2> /dev/null
-
-zstyle ":omz:plugins:ssh-agent" quiet yes
-plugins=(
-  git
-  aliases
-  dotnet
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  docker
-  ssh-agent
-)
-source $ZSH/oh-my-zsh.sh
-bindkey '^ ' autosuggest-accept # Ctrl + Space to accept suggestion
 
 unsetopt HIST_VERIFY # Disable preview when typing !!, just execute the command
 setopt histignorespace # Commands starting with space will not be saved to history
@@ -37,16 +18,12 @@ alias s="source ~/.zshrc"
 alias r="ranger"
 alias g="gitui"
 alias v="nvim"
-woops() { trap 'zsh -i' INT }
 alias sudovim="sudo -Es  nvim"
 alias vim="nvim"
-alias python="python3"
 cheat() { curl cheat.sh/$1; }
-alias yay="paru"
 alias parus="paru -S"
 alias parur="paru -R"
-alias jpwine="LANG='ja_JP.UTF8' wine"
-alias lzd="sudo lazydocker"
+alias ld="sudo lazydocker"
 alias esp="espanso edit"
 alias disk_usage="du -h | sort -hr | head -n 30"
 alias mountstorage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
@@ -57,9 +34,6 @@ alias docker="sudo docker"
 alias sit="bld && linak-controller --move-to sit" # Requires "pipx install linak-controller"
 alias stand="bld && linak-controller --move-to stand"
 alias curltime="curl -Ls --output /dev/null -w '\n\nTotal: %{time_total}s Code: %{response_code}\n' "
-alias windows="sudo grub-reboot 'Windows 10 (on /dev/sdb1)' && systemctl reboot"
-zv() { z $1 && nvim .; }
-alias ziv="zi && nvim ."
 alias cs=csharprepl
 
 
@@ -77,12 +51,8 @@ installed() {
   pacman -Qqett | sort
 }
 
-# Github copilot CLI
-# eval "$(github-copilot-cli alias -- "$0")"
-
 # Do not source on init because its quite slow
 alias nvminit="source /usr/share/nvm/init-nvm.sh"
 
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
 

@@ -57,7 +57,7 @@ mpv
 # wireless_tools
 # wpa_supplicant
 starship
-zsh
+fish
 bat
 gitui
 man-db

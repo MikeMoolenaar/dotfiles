@@ -42,15 +42,7 @@ if [[ $(which docker) ]]; then
 fi
 espanso service register
 
-# Setup zsh
-ln -s ~/.config/zsh/.zshrc ~/.zshrc
-
-chsh -s /bin/zsh
-
-# Install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+chsh -s /bin/fish
 
 # Setup Alacritty
 mkdir -p ~/.config/alacritty/themes
