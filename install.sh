@@ -40,7 +40,6 @@ sudo systemctl enable bluetooth
 if [[ $(which docker) ]]; then
     sudo systemctl enable docker.service
 fi
-espanso service register
 
 chsh -s /bin/fish
 
