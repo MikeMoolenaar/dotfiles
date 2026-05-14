@@ -12,7 +12,6 @@ set -gx GH_TELEMETRY false
 set -g fish_greeting
 
 # History: commands starting with space won't be saved
-# (fish does this by default when fish_private_mode is off; for explicit ignore-space behavior:)
 set -g fish_history_ignore_space 1
 
 # Aliases
