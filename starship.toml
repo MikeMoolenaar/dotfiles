@@ -45,7 +45,13 @@ symbol = " "
 symbol = " "
 
 [git_branch]
+format = "on [$symbol$branch(:$remote_branch)]($style) "
 symbol = " "
+
+[git_status]
+staged = "[+](green)"
+untracked = "[?](red)"
+modified = "[*](yellow)"
 
 [golang]
 symbol = " "

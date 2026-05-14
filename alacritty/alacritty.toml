@@ -5,9 +5,9 @@ padding.x = 10
 padding.y = 10
 dynamic_padding = true
 
-[font]
-normal.family = "JetBrains Mono"
-normal.style = "Regular"
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
 
 [[keyboard.bindings]]
 key = "N"

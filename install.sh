@@ -48,15 +48,14 @@ chsh -s /bin/fish
 mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
-# Install JetBrains Mono font
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
-
-# Install FiraCode font to get glyphs used in starship
-wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
-unzip FiraCode.zip -d firacode-temp
-mv firacode-temp/FiraCodeNerdFont-Medium.ttf ~/.local/share/fonts/
-rm FiraCode.zip
-rm -r firacode-temp
+# Install JetBrains Mono Nerd Font (patched with icons used in starship)
+mkdir -p ~/.local/share/fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip JetBrainsMono.zip -d jetbrainsmono-temp
+mv jetbrainsmono-temp/*.ttf ~/.local/share/fonts/
+rm JetBrainsMono.zip
+rm -r jetbrainsmono-temp
+fc-cache -fv
 
 # Git stuff
 git config --global init.defaultBranch main
