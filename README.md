@@ -1,11 +1,11 @@
 # dotfiles
 My personal Arch Linux dotfiles with installation script.
 
-- **Window system** Wayland
-- **Compsitor** Hyprland
+- **Display protocol** Wayland
+- **Compositor** Hyprland
 - **Terminal** Alacritty
-- **Shell** Zsh (with Oh My Zsh)
-- **File manager** Ranger
+- **Shell** fish
+- **File manager** Yazi
 - **Text editor** Neovim
 
 ## Installation
@@ -24,7 +24,7 @@ Get and run the install script (WARNING: this will delete the `.config` folder!)
 ```sh
 wget https://raw.githubusercontent.com/MikeMoolenaar/dotfiles/main/install.sh
 chmod +x install.sh
-bash install.sh
+./install.sh
 ```
 
 ### Post-install steps
