@@ -9,7 +9,6 @@ alacritty/themes/
 !wofi/style.css
 !picom/**
 !polybar/**
-!ranger/**
 !vim/**
 !nvim/**
 nvim/lazy-lock.json
@@ -31,3 +30,4 @@ scripts/*.png
 !/.gitignore
 !/vicinae/**
 !/fish/**
+!/.claude/**

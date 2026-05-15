@@ -17,7 +17,7 @@ set -g fish_history_ignore_space 1
 # Aliases
 alias c="clear"
 alias s="source ~/.config/fish/config.fish"
-alias r="ranger"
+alias y="yazi"
 alias g="gitui"
 alias v="nvim"
 alias sudovim="sudo -Es nvim"

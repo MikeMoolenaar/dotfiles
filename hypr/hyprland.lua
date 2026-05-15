@@ -257,6 +257,16 @@ hl.window_rule({
     no_focus         = true,
 })
 
+-- ueberzugpp: float the overlay window so Yazi image preview works
+hl.window_rule({
+    name  = "ueberzugpp-float",
+    match = { title = "^ueberzugpp_.*" },
+
+    float            = true,
+    no_focus         = true,
+    no_initial_focus = true,
+})
+
 hl.layer_rule({
     name  = "vicinae-blur",
     match = { namespace = "vicinae" },
