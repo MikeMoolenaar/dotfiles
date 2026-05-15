@@ -1,7 +1,0 @@
-#!/bin/sh
-file="/home/mike/Backgrounds/background.png"
-if [ -f "$file" ]; then
-
-	sleep 2
-	feh --no-fehbg --bg-center "$file"
-fi
