@@ -117,12 +117,6 @@ hl.animation({ leaf = "border",     enabled = true, speed = 10, bezier = "defaul
 hl.animation({ leaf = "fade",       enabled = true, speed = 7,  bezier = "default" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4,  bezier = "default" })
 
-hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
-})
-
-
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
