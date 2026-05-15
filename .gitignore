@@ -31,3 +31,4 @@ scripts/*.png
 !/vicinae/**
 !/fish/**
 !/.claude/**
+!CLAUDE.md
