@@ -5,6 +5,7 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path /home/mike/.dotnet/tools
 
 # SSH agent
+set -gx SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 ssh-add ~/.ssh/id_ed25519 2>/dev/null
 
 # Environment variables
