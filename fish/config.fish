@@ -4,6 +4,9 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path /home/mike/.dotnet/tools
 
+# SSH agent
+ssh-add ~/.ssh/id_ed25519 2>/dev/null
+
 # Environment variables
 set -gx MANPAGER 'nvim +Man!'
 set -gx EDITOR /bin/nvim
