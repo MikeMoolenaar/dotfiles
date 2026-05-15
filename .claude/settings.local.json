@@ -9,7 +9,8 @@
       "Bash(hyprctl --help)",
       "Bash(hyprctl clients *)",
       "Bash(hyprctl layers *)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(nvim --version)"
     ]
   }
 }

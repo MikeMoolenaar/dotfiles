@@ -93,14 +93,14 @@ require("lazy").setup({
 	"luckasRanarison/tree-sitter-hyprlang",
 	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "main",  build = ":TSUpdate",
 
-  config = function() 
+  config = function()
       require('nvim-treesitter').setup {
         install_dir = vim.fn.stdpath('data') .. '/site'
       }
-      require('nvim-treesitter').install { "c", "lua", "vim",  "javascript", "typescript", "bash", "css", "dockerfile", "hyprlang" }
+      require('nvim-treesitter').install { "c", "lua", "vim", "javascript", "typescript", "bash", "css", "dockerfile", "hyprlang", "python" }
 
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { "c", "lua", "vim",  "javascript", "typescript", "bash", "css", "dockerfile", "hyprlang" },
+        pattern = { "c", "lua", "vim", "javascript", "typescript", "bash", "css", "dockerfile", "hyprlang", "python" },
         callback = function()
           vim.treesitter.start()
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
@@ -116,9 +116,6 @@ require("lazy").setup({
 },
 	"github/copilot.vim",
 	{ "folke/todo-comments.nvim", opts = {} },
-
-	-- :StartupTime
-	"dstein64/vim-startuptime",
 
 	-- switch (like, true/false) with key `gs`
 	-- also works in markdown checklists
@@ -138,7 +135,6 @@ require("lazy").setup({
 	},
 
 	-- Lsp stuff
-	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
@@ -203,9 +199,14 @@ require("lazy").setup({
 
 	{
 		"RRethy/vim-illuminate",
-		event = "LspAttach",
+		event = "VeryLazy",
 		opts = {
 			delay = 200,
+      providers = {
+        'lsp',
+        'treesitter',
+        'regex',
+      },
 		},
 		config = function(_, opts)
 			require("illuminate").configure(opts)
@@ -299,13 +300,6 @@ vim.cmd([[
   let g:copilot_no_tab_map = v:true
 ]])
 
--- Open code block in buffer so LSP works.
--- TODO: currently, must call :LspRestart to get LSP to work again
--- Setup https://github.com/dawsers/edit-code-block.nvim
-require("ecb").setup({
-	wincmd = "split", -- this is the default way to open the code block window
-})
-
 local todo_comments = require("todo-comments")
 todo_comments.setup()
 
@@ -321,40 +315,53 @@ require("telescope").setup({
 		},
 	},
 })
--- require("telescope").load_extension("fzf")
 vim.keymap.set("n", "<leader>f", builtin.git_files, { desc = "Telescope git files" })
 vim.keymap.set("n", "<leader>v", builtin.find_files, { desc = "Telescope all files" })
 vim.keymap.set("n", "<leader>s", builtin.grep_string, { desc = "Telescope string search" })
 vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Telescope live search" })
 vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Telescope search current string" })
--- vim.keymap.set("n", "<leader>h", builtin.help_tags, {})
 
--- Treesitter for syntax highlighting + parsing syntax stuff (idk actually)
+-- LSP setup
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(event)
+		local bufnr = event.buf
+		local map = function(keys, func, desc)
+			vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+		end
+		map("K", vim.lsp.buf.hover, "Hover")
+		map("gd", vim.lsp.buf.definition, "Goto definition")
+		map("gD", vim.lsp.buf.declaration, "Goto declaration")
+		map("gi", vim.lsp.buf.implementation, "Goto implementation")
+		map("go", vim.lsp.buf.type_definition, "Goto type definition")
+		map("gr", vim.lsp.buf.references, "List references")
+		map("gs", vim.lsp.buf.signature_help, "Signature help")
+		map("<F4>", vim.lsp.buf.code_action, "Code action")
+	end,
+})
 
-local lsp_zero = require("lsp-zero")
-lsp_zero.preset("recommended")
-lsp_zero.on_attach(function(_, bufnr)
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp_zero.default_keymaps({ buffer = bufnr })
-end)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- see :help lsp-zero-guide:integrate-with-mason-nvim
--- to learn how to use mason.nvim with lsp-zero
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
-		-- "html",
-		-- "tsserver",
-		-- "htmx",
-		-- "stylua", -- Must be installed via Cargo
 	},
 	handlers = {
-		lsp_zero.default_setup,
+		function(server_name)
+			require("lspconfig")[server_name].setup({ capabilities = capabilities })
+		end,
 		lua_ls = function()
-			local lua_opts = lsp_zero.nvim_lua_ls()
-			vim.lsp.config().lua_ls.setup(lua_opts)
+			require("lspconfig").lua_ls.setup({
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true),
+							checkThirdParty = false,
+						},
+					},
+				},
+			})
 		end,
 	},
 })
@@ -525,13 +532,10 @@ vim.keymap.set("n", "<leader>rn", function()
 end, { desc = "Rename with LSP" })
 
 local is_neotree_focused = function()
-	-- Get our current buffer number
 	local bufnr = vim.api.nvim_get_current_buf and vim.api.nvim_get_current_buf() or vim.fn.bufnr()
-	-- Get all the available sources in neo-tree
-	for _, source in ipairs(require("neo-tree").config.sources) do
-		-- Get each sources state
-		local state = require("neo-tree.sources.manager").get_state(source)
-		-- Check if the source has a state, if the state has a buffer and if the buffer is our current buffer
+	local manager = require("neo-tree.sources.manager")
+	for _, source in ipairs({ "filesystem", "buffers", "git_status" }) do
+		local state = manager.get_state(source)
 		if state and state.bufnr and state.bufnr == bufnr then
 			return true
 		end
@@ -633,26 +637,3 @@ end, { desc = "Previous TODO" })
 -- Insert empty line
 vim.keymap.set("n", "[<space>", ":pu! _<cr>:']+1<cr>", { desc = "Insert empty line above" })
 vim.keymap.set("n", "]<space>", ":pu _<cr>:'[-1<cr>", { desc = "Insert empty line below" })
-
--- for htmx-lsp development
---[[
-id = vim.lsp.start_client({
-	cmd = { "/home/mike/git/htmx-lsp/target/debug/htmx-lsp", "--level", "INFO" },
-	filetypes = { "html", "htmldjango" },
-	root_dir = vim.loop.cwd(),
-})
-local function attach_lsp(args)
-	if id == nil then
-		return
-	end
-
-	local bufnr = vim.api.nvim_get_current_buf()
-	if not vim.lsp.buf_is_attached(bufnr, id) then
-		vim.lsp.buf_attach_client(bufnr, id)
-	end
-end
-
-vim.api.nvim_create_autocmd("BufEnter", {
-	callback = attach_lsp,
-})
---]]
