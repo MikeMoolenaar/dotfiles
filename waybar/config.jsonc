@@ -23,7 +23,8 @@
     ],
 
     "hyprland/window": {
-        "format": "{}"
+        "format": "{}",
+        "separate-outputs": true
     },
     
     "hyprland/workspaces": {
