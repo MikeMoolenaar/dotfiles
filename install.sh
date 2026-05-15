@@ -7,7 +7,7 @@ sudo pacman -Syu
 if ! builtin type -p 'paru' >/dev/null 2>&1; then
   CWD=`pwd`
   tmpdir="$(command mktemp -d)"
-  command cd "${tmpdir}" || return 1
+  command cd "${tmpdir}" || exit 1
   sudo pacman -Sy --needed --noconfirm base base-devel git
   git clone https://aur.archlinux.org/paru.git
   cd paru
@@ -21,24 +21,26 @@ git clone git@github.com:MikeMoolenaar/dotfiles.git ~/.config
 # Setup dependencies
 vim ~/.config/dependencies.sh
 
-mapfile -t packages < <(grep -v ^\# ~/.config/dependencies.sh)
+mapfile -t packages < <(grep -v ^\# ~/.config/dependencies.sh | grep -v '^$')
 
 echo "Will install ${#packages[@]} dependencies:"
 for line in "${packages[@]}"; do
     echo "$line"
 done
 
-read -p "\nContinue? (y/n): " response
+printf "\nContinue? (y/n): "
+read -r response
 if [ "$response" = "n" ] || [ "$response" = "N" ]; then
 	exit 0
 fi
 
-for i in "${packages[@]}"; do paru -S --noconfirm $i; done
+for i in "${packages[@]}"; do paru -S --noconfirm "$i"; done
 
 # Setup services
 sudo systemctl enable bluetooth
-if [[ $(which docker) ]]; then
-    sudo systemctl enable docker.service
+if command -v docker &>/dev/null; then
+  sudo systemctl enable docker.service
+  sudo systemctl enable containerd.service
 fi
 
 chsh -s /bin/fish
