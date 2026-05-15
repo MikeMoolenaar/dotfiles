@@ -16,8 +16,6 @@ hyprpaper
 hyprlock
 dotnet-sdk
 aspnet-runtime
-# dotnet-sdk-preview-bin
-# aspnet-runtime-preview-bin
 dunst
 jq
 vicinae-bin
@@ -49,8 +47,9 @@ picom
 playerctl
 polybar
 # qbittorrent
-ranger
-ueberzugpp # Enable image preview in ranger
+# vesktop
+yazi
+ueberzugpp # Enable image preview in yazi
 spotify
 mpv
 # wireguard-tools # Required for VPN's
@@ -65,33 +64,21 @@ man-db
 python-pandas
 python-pipx # Handy for CLI's written in python
 # remmina
-# libvncserver
 gnome-keyring
 docker
 docker-compose
 docker-buildx
 lazydocker
 whois
-xsel
 # imhex-bin # hex editor
+# anki
 # wine
 # wine-mono
 #=> Libreoffice
 libreoffice-fresh
 hunspell
 hunspell-en_gb
-#=>
 #=> VM related stuff
 # virt-manager
 # qemu
 # dnsmasq
-#=>
-# anki
-# => Japanese input stuff
-# fcitx5
-# fcitx5-mozc
-# fcitx5-gtk
-# fcitx5-configtool
-# =>
-# mkvalidator
-# yazi-bin
