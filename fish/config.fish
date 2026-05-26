@@ -48,11 +48,15 @@ function cheat
 end
 
 function mkcdir
-    mkdir -p -- $argv[1]; and cd -P -- $argv[1]
+    mkdir -p -- $argv[1]; and cd $argv[1]
 end
 
 function gitopen
     git remote -v | head -n 1 | awk -F " " '{print $2}' | sed 's/\.git//g' | sed 's/git\@github\.com:/https:\/\/github\.com\//g' | xargs firefox --new-tab &
+end
+
+function initenv
+  eval $(grep -E "^[^#;]" .env | xargs -d'\n' -n1 | sed 's/^/export /')
 end
 
 function installed
