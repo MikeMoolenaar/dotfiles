@@ -19,5 +19,6 @@ nvim/lazy-lock.json
 !vicinae/**
 !fish/**
 !btop/**
+!yazi/**
 !.claude/**
 !CLAUDE.md
