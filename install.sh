@@ -49,6 +49,9 @@ chsh -s /bin/fish
 mkdir -p ~/.config/alacritty/themes
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
+# Install Yazi theme
+ya pkg install
+
 # Install JetBrains Mono Nerd Font (patched with icons used in starship)
 mkdir -p ~/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
