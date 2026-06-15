@@ -1,8 +1,9 @@
 # dotfiles
 My personal Arch Linux dotfiles with installation script.
 
+- **OS** Arch Linux
 - **Display protocol** Wayland
-- **Compositor** Hyprland
+- **Window manager / compositor** Hyprland
 - **Terminal** Alacritty
 - **Shell** fish
 - **File manager** Yazi
