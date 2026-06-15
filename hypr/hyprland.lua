@@ -76,7 +76,7 @@ hl.config({
 
     dwindle = {
         preserve_split = true,
-        force_split    = 2,
+        force_split    = 2
     },
 
     master = {
@@ -149,6 +149,7 @@ hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + SHIFT + O", hl.dsp.layout("togglesplit"))
 
 -- Switch workspaces, move windows to workspaces
 for i = 1, 10 do

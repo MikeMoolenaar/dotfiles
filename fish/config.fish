@@ -61,3 +61,8 @@ end
 
 # Starship prompt
 starship init fish | source
+
+# Scaleway CLI autocomplete initialization.
+if type -q scw
+    eval (scw autocomplete script shell=fish)
+end
