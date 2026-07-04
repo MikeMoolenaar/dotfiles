@@ -21,7 +21,6 @@ set -g fish_history_ignore_space 1
 # Aliases
 alias c="clear"
 alias s="source ~/.config/fish/config.fish"
-alias y="yazi"
 alias g="gitui"
 alias v="nvim"
 alias sudovim="sudo -Es nvim"
@@ -29,12 +28,10 @@ alias vim="nvim"
 alias parus="paru -S"
 alias parur="paru -R"
 alias ld="sudo lazydocker"
-alias esp="espanso edit"
 alias disk_usage="du -h | sort -hr | head -n 30"
 alias mountstorage="sudo mount -t ntfs3 /dev/sda2 /mnt/storage"
 alias blb="bluetoothctl disconnect; bluetoothctl connect A0:D0:5B:A5:4E:74"
 alias blh="bluetoothctl disconnect; bluetoothctl connect 58:18:62:1F:C7:E1"
-alias bld="bluetoothctl connect C3:ED:90:B1:C5:61"
 alias docker="sudo docker"
 alias sit="bld && linak-controller --move-to sit"
 alias stand="bld && linak-controller --move-to stand"
@@ -43,6 +40,17 @@ alias cs="csharprepl"
 alias nvminit="source /usr/share/nvm/init-nvm.sh"
 
 # Functions
+
+# Changes cwd when quiting Yazi with 'q'
+function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	command yazi $argv --cwd-file="$tmp"
+	if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+		builtin cd -- "$cwd"
+	end
+	command rm -f -- "$tmp"
+end
+
 function cheat
     curl cheat.sh/$argv[1]
 end
