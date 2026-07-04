@@ -18,7 +18,7 @@ set showmode "Like, VISUAL or INSERT
 set mouse=a "Can use mouse in [a]ll modes
 set hlsearch "Highlight all search result
 set incsearch "show search results as you type
-set guicursor= "Set guicursor to block in neovim
+set guicursor=a:block-blinkon0 "Set guicursor to block in neovim
 set ignorecase "Ignore case when searching
 set smartcase "Unless we explicitly use cases in search
 set linebreak "Wrap at word boundaries
