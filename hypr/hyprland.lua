@@ -11,7 +11,8 @@ require(env)
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
-    hl.exec_cmd("waybar")
+    -- via shim: Waybar's legacy IPC dispatches break under the Lua config
+    hl.exec_cmd(os.getenv("HOME") .. "/.config/waybar/waybar-hypr-shim.py")
     hl.exec_cmd("vicinae server")
 end)
 

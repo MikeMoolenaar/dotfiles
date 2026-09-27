@@ -38,6 +38,7 @@ for i in "${packages[@]}"; do paru -S --noconfirm "$i"; done
 
 # Setup services
 sudo systemctl enable bluetooth
+sudo systemctl enable paccache.timer
 if command -v docker &>/dev/null; then
   sudo systemctl enable docker.service
   sudo systemctl enable containerd.service
